@@ -152,6 +152,35 @@ img {
     margin-right: 2rem;
 }
 
+#menu-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 2rem 2rem 6rem 2rem;
+
+    section {
+        margin: 2rem 0;
+    }
+    
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h2, h3 {
+        display: flex;
+        justify-content: center;
+    }
+
+    h3 {
+        margin: 4rem 0 2rem 0;
+    }
+
+}
+
 // Keyframes för animering
 @keyframes spin {
     0% {
