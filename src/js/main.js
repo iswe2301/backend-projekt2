@@ -4,6 +4,7 @@
 import { loginUser } from "./login.js";
 import { createUser } from "./create.js";
 import { fetchExperiences } from "./get.js";
+import { fetchMenu } from "./menu.js";
 
 // Hämtar element och lagrar i variabler
 const loginBtn = document.getElementById("submit-login");
@@ -13,10 +14,13 @@ const userForm = document.getElementById("userForm");
 const loggedInUser = document.getElementById("logged-in")
 const logOutBtn = document.getElementById("log-out");
 export let errorMsg = document.getElementById("error-message");
+export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 
 // Skapar initieringsfunktion som körs när webbsidan laddats
 window.onload = init;
 function init() {
+
+    fetchMenu(); // Anropar funktion för att hämta menyn
 
     // Kontrollerar om sökvägen innehåller "/get"
     if (window.location.pathname.includes("/get")) {
