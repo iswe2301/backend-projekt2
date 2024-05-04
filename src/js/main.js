@@ -5,6 +5,7 @@ import { loginUser } from "./login.js";
 import { createUser } from "./create.js";
 import { fetchExperiences } from "./get.js";
 import { fetchMenu } from "./menu.js";
+import { makeBooking } from "./booking.js";
 
 // Hämtar element och lagrar i variabler
 const loginBtn = document.getElementById("submit-login");
@@ -13,6 +14,9 @@ const userBtn = document.getElementById("submit-user");
 const userForm = document.getElementById("userForm");
 const loggedInUser = document.getElementById("logged-in")
 const logOutBtn = document.getElementById("log-out");
+const bookingForm = document.getElementById("booking-form");
+const bookingBtn = document.getElementById("bookBtn");
+const menuContainer = document.getElementById("menu-list");
 export let errorMsg = document.getElementById("error-message");
 export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 
@@ -20,7 +24,29 @@ export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 window.onload = init;
 function init() {
 
-    fetchMenu(); // Anropar funktion för att hämta menyn
+    // Kontrollerar om bokningsknapp finns på sidan
+    if (bookingBtn) {
+        // Läghger till händelselyssnare
+        bookingBtn.addEventListener("click", (event) => {
+            event.preventDefault(); // Förhindrar formulärets standardbeteende
+            makeBooking(); // Anropar funktion för att genomföra bokning
+        });
+
+        // Hämtar alla input-element från formuläret och lagrar i variabel
+        const formInputs = bookingForm.querySelectorAll("input");
+
+        // Lägger till händelselyssnare för varje input i formuläret
+        formInputs.forEach(input => {
+            input.addEventListener("input", () => {
+                errorMsg.style.display = "none"; // Döljer felmeddelandet vid input
+            });
+        });
+    }
+
+    // Kontrollerar om container för meny existerar
+    if (menuContainer) {
+        fetchMenu(); // Anropar funktion för att hämta menyn
+    }
 
     // Kontrollerar om sökvägen innehåller "/get"
     if (window.location.pathname.includes("/get")) {
