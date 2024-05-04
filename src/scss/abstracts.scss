@@ -1,0 +1,57 @@
+// Variabler för text och färger
+$font-text: 'Roboto', Helvetica, Arial, sans-serif;
+$font-heading: "Montserrat", 'Roboto', Helvetica, sans-serif;
+$background-color: rgb(255, 255, 255);
+$bg-color-white: rgb(255, 255, 255);
+$primary-color: rgb(32, 32, 32);
+$basic-black: black;
+$secondary-color: rgb(34, 112, 185);
+$light-grey-color: rgb(190, 190, 190);
+$light-pink: rgb(255, 248, 252);
+$link-color: hotpink;
+$transparent-grey: rgba(51, 51, 51, 0.9);
+$nav-color: rgb(77, 74, 75);
+$mobile-nav-color: hotpink;
+$sub-head-color: #05081f;
+$hover-color: darken($link-color, 10%);
+$text-color: #333;
+$light-text-color: white;
+$delete-btn-color: rgb(236, 58, 58);
+
+// Extend för knappar inkl. hover
+%button-style {
+    background-color: $link-color;
+    color: $light-text-color;
+    font-family: $font-heading;
+    margin: 2rem 0;
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+    font-size: 2.2rem;
+    width: 100%;
+    height: auto;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+// Mixin för flex och centering av layout
+@mixin center-flex() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// Mixin för gemensamma egenskaper för rubriker
+@mixin heading-style($font-size, $line-height, $font-weight) {
+    font-size: $font-size;
+    font-family: $font-heading;
+    color: $primary-color;
+    font-weight: $font-weight;
+    letter-spacing: 0.2rem;
+    line-height: $line-height;
+}

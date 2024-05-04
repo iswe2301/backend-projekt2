@@ -1,0 +1,188 @@
+@use 'abstracts';
+
+/* STYLING FÖR KNAPPAR */
+
+// Inkluderar stil för standard knappar genom extend
+button {
+    @extend %button-style;
+    width: 50%;
+    height: 4rem;
+    margin: 1rem 0;
+    font-size: 1.6rem;
+    background-color: abstracts.$link-color;
+
+    &:hover {
+        background-color: darken(abstracts.$hover-color, 10%);
+    }
+}
+
+// Fixerar bakgrundsblder (picture-tagg) med 100% höjd/bredd
+.body-background {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+// Sätter bakgrundsbilde till 100% höjd/bredd och cover för att bilden ska täcka enligt rätt förhållanden
+#background-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+// Storlek för bilder
+img {
+    width: 100%;
+    height: auto;
+}
+
+// ID-styling för felmeddelande
+#error-message {
+    display: none;
+    justify-content: center;
+    color: abstracts.$delete-btn-color;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+// Styling för popup vid klick på skapa jobberfarenhet
+.popup {
+    width: 100%;
+    height: 0;
+    background-color: abstracts.$link-color;
+    color: white;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    font-family: abstracts.$font-text;
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+    transition: height 1s; // Lägger transition på höjden, höjden ändras under 1 sekund
+    z-index: 5;
+    box-shadow: 0px -4px 10px 0px rgb(0 0 0 / 20%); // Skugga
+}
+
+// Styling för när popup visas
+.popup.show {
+    height: 5rem;
+    padding: 1rem;
+}
+
+// Döljer innehåll i content initalt
+#content {
+    display: none;
+}
+
+// Margin för laddningsmeddelande
+#loading {
+    margin: 5rem auto 2rem auto;
+    text-align: center;
+    width: 100%;
+}
+
+// Styling för gruppering av text och länk till logga in/skapa konto
+#user {
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem 0;
+
+    p {
+        padding-right: 0.5rem;
+    }
+
+}
+
+// Styling för användarhantering (logga ut + info om inloggad användare)
+#user-manager {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 3rem 2rem;
+
+    i {
+        margin-right: 0.5rem;
+    }
+
+    button {
+        margin: 1rem 0;
+        font-size: 1.4rem;
+        width: 15rem;
+        height: 3rem;
+
+        i {
+            margin-left: 0.3rem;
+        }
+    }
+}
+
+// Styling för logga in/skapa konto
+.login-section {
+    margin-top: 5rem;
+
+    .form-group {
+        margin: 0.5rem 0;
+    }
+}
+
+// Styling för sektion av knapp + laddningsikon
+#submit-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+// Animering för laddningsikon
+.loader {
+    display: none; // Döljs initialt
+    border: 1rem solid #f3f3f3;
+    border-top: 1rem solid hotpink;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    animation: spin 2s linear infinite; // Pågår under 2 sekunder, samma hastighet om och om igen
+    margin-right: 2rem;
+}
+
+// Keyframes för animering
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg); // Roterar från 0 till 360 grader
+    }
+}
+
+// Ökar bredd vid mindre skrämar (max 1024px)
+@media (max-width: 1024px) {
+    .popup.show {
+        height: 7rem;
+    }
+}
+
+// Styling vid mindre skrämar (max 600px)
+@media (max-width: 600px) {
+
+    #submit-section {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        margin: 2rem 0 0 0;
+    }
+
+    .popup.show {
+        height: 8rem;
+    }
+}

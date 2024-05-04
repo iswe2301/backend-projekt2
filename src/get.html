@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="scss/main.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;700&display=swap">
+    <script src="js/main.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
+    <title>Isa Westling | WorkXperience</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <!-- Picturetagg med bakgrundbild i olika filformat / storlekar -->
+    <picture class="body-background">
+        <source srcset="images/background.jpg?as=avif" media="(min-width: 1921px)" type="image/avif">
+        <source srcset="images/background.jpg?as=webp" media="(min-width: 1921px)" type="image/webp">
+        <source srcset="images/background.jpg" media="(min-width: 1921px)" type="image/jpeg">
+        <source srcset="images/background.jpg?as=avif&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/avif">
+        <source srcset="images/background.jpg?as=webp&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/webp">
+        <source srcset="images/background.jpg?width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/jpeg">
+        <source srcset="images/background.jpg?as=avif&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/avif">
+        <source srcset="images/background.jpg?as=webp&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/webp">
+        <source srcset="images/background.jpg?width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/jpeg">
+        <source srcset="images/small_background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
+        <source srcset="images/small_background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
+        <source srcset="images/small_background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
+        <img id="background-img" src="images/background.jpg" alt="Rosa bubblor">
+    </picture>
+
+    <!-- Huvudinnehåll -->
+    <main>
+
+        <!-- Header med logotyp -->
+        <header>
+            <a href="/"><img src="images/logo.svg" alt="Logotyp WorkXperience"></a>
+        </header>
+
+        <div id="content">
+            <div id="user-manager">
+                <!-- Knapp för att logga ut, visar användarnman från JS -->
+                <span id="logged-in"></span>
+                <button id="log-out">Logga ut <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+            </div>
+            <!-- Huvudinnehåll som läses in från JS -->
+            <h1>JOBBERFARENHETER</h1>
+            <section id="work-container">
+            </section>
+        </div>
+        <!-- Visas när användaren inte är behörig / innan content laddats in korrekt -->
+        <span id="loading">Laddar innehåll...</span>
+        <span class="loader"></span>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Isa Westling</p>
+        <p>DT207G Backend-baserad webbutveckling</p>
+        <p>Webbutvecklingsprogrammet, Mittuniversitetet</p>
+    </footer>
+</body>
+
+</html>
