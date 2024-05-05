@@ -22,15 +22,39 @@ const contactBtn = document.getElementById("contactBtn");
 const contactForm = document.getElementById("contact-form");
 const reviewBtn = document.getElementById("reviewBtn");
 const reviewForm = document.getElementById("review-form");
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+const menuIcon = document.querySelector(".fa-bars");
+const closeIcon = document.querySelector(".fa-xmark");
+const containerEl = document.getElementById("overlay");
+const confirmation = document.getElementById("confirmation");
 export const menuContainer = document.getElementById("menu-list");
 export const reviewsContainer = document.getElementById("reviews-container");
-const confirmation = document.getElementById("confirmation");
 export let errorMsg = document.getElementById("error-message");
 export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 
 // Skapar initieringsfunktion som körs när webbsidan laddats
 window.onload = init;
 function init() {
+
+    // Skapar klickhändelselyssnare för menyknappen, anonym funktion
+    menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("show"); // Växlar mellan klassen show för att visa/dölja mobilmenyn
+        containerEl.classList.toggle("opacity"); // Växlar mellan visa/dölja opacity när menyn klickas
+
+        // Kontrollerar om mobilmenyn visas eller inte
+        if (mobileMenu.classList.contains("show")) {
+            // Om menyn visas, gör hamburgerikonen osynlig och kryssikonen synlig
+            menuIcon.style.opacity = "0";
+            closeIcon.style.opacity = "1";
+            closeIcon.style.transform = "translate(-50%, -50%) rotate(360deg)"; // Animerar kryssikonen med en rotation på 360 grader
+        } else {
+            // Om menyn inte visas, gör hamburgerikonen synlig och kryssikonen osynlig
+            menuIcon.style.opacity = "1";
+            closeIcon.style.opacity = "0";
+            closeIcon.style.transform = "translate(-50%, -50%) rotate(-360deg)"; // Återställer kryssikonens rotation
+        }
+    });
 
     // Kontrollerar om container för meny existerar
     if (menuContainer) {
