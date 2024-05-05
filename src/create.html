@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="scss/main.scss">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
     <script src="js/main.js" type="module"></script>
     <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
-    <title>Isa Westling | WorkXperience</title>
+    <title>MÅ. | Registrera</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
+    <div id="overlay" class="hidden"></div>
     <!-- Picturetagg med bakgrundbild i olika filformat / storlekar -->
     <picture class="body-background">
         <source srcset="images/background.jpg?as=avif" media="(min-width: 1921px)" type="image/avif">
@@ -33,52 +34,95 @@
             type="image/webp">
         <source srcset="images/background.jpg?width=1200" media="(min-width: 801px) and (max-width: 1200px)"
             type="image/jpeg">
-        <source srcset="images/small_background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
-        <source srcset="images/small_background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
-        <source srcset="images/small_background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
-        <img id="background-img" src="images/background.jpg" alt="Rosa bubblor">
+        <source srcset="images/background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
+        <source srcset="images/background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
+        <source srcset="images/background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
+        <img id="background-img" src="images/background.jpg" alt="Restaurang">
     </picture>
 
-    <!-- Huvudinnehåll -->
-    <main>
-        <!-- Header med logotyp -->
-        <header>
-            <a href="/"><img src="images/logo.svg" alt="Logotyp WorkXperience"></a>
-        </header>
-
-        <!-- Formulär för att skapa ny användare -->
-        <div class="login-section">
-            <h1>Skapa användarkonto</h1>
-            <form id="userForm" metod="POST">
-                <div class="form-group">
-                    <label for="new-username">Användarnamn</label>
-                    <input type="text" id="new-username" name="username" required placeholder="Ange användarnamn...">
-                </div>
-                <div class="form-group">
-                    <label for="new-password">Lösenord</label>
-                    <input type="password" id="new-password" name="password" required placeholder="Ange lösenord...">
-                </div>
-                <span id="error-message"></span>
-                <div id="submit-section"><span class="loader"></span>
-                    <button type="submit" id="submit-user">Skapa konto <i class="fa-solid fa-plus"></i></button>
-                </div>
-                <!-- Länk för att logga in -->
-                <div id="user">
-                    <p>Har du redan ett konto?</p>
-                    <a href="index.html">Logga in</a>
-                </div>
-            </form>
+    <!-- Header med logotyp -->
+    <header>
+        <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ."></a>
+        <nav id="menu">
+            <ul>
+                <li><a class="active" href="mybookings.html">Bokningar</a></li>
+                <li><a href="mymenu.html">Meny</a></li>
+                <li><a href="messages.html">Meddelanden</a></li>
+                <li><a href="create.html">Ny användare</li>
+            </ul>
+        </nav>
+        <!-- Mobilmeny -->
+        <div class="menu-container">
+            <nav class="mobile-menu">
+                <ul>
+                    <li><a class="active" href="mybookings.html">Bokningar</a></li>
+                    <li><a href="mymenu.html">Meny</a></li>
+                    <li><a href="messages.html">Meddelanden</a></li>
+                    <li><a href="create.html">Ny användare</li>
+                </ul>
+            </nav>
+            <!-- Knapp för att växla mobilmenyns synlighet -->
+            <button class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
-        <!-- Popup som visas när ny användare lagts till -->
-        <span class="popup"></span>
-    </main>
+    </header>
 
-    <!-- Footer -->
+    <div id="content">
+        <div id="user-manager">
+            <!-- Knapp för att logga ut, visar användarnman från JS -->
+            <span id="logged-in"></span>
+            <button id="log-out">Logga ut <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        </div>
+        <!-- Huvudinnehåll -->
+        <main>
+
+            <!-- Formulär för att skapa ny användare -->
+            <div class="login-section">
+                <h1>Skapa användarkonto</h1>
+                <form id="userForm" metod="POST">
+                    <div class="form-group">
+                        <label for="new-username">Användarnamn *</label>
+                        <input type="text" id="new-username" name="username" required
+                            placeholder="Ange användarnamn...">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Lösenord *</label>
+                        <input type="password" id="new-password" name="password" required
+                            placeholder="Ange lösenord...">
+                    </div>
+                    <span id="error-message"></span>
+                    <div id="submit-section"><span class="loader"></span>
+                        <button type="submit" id="submit-user">Skapa konto <i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </form>
+            </div>
+            <!-- Popup som visas när ny användare lagts till -->
+            <span class="popup"></span>
+        </main>
+
+    <!-- Footer med diverse länkar -->
     <footer>
-        <p>&copy; 2024 Isa Westling</p>
-        <p>DT207G Backend-baserad webbutveckling</p>
-        <p>Webbutvecklingsprogrammet, Mittuniversitetet</p>
+        <div id="footer-content">
+            <div class="footer-col">
+                <h2>Snabblänkar</h2>
+                <a href="mybookings.html"><i class="fa-solid fa-calendar"></i>Se bokningar</a>
+                <a href="mymenu.html"><i class="fa-solid fa-utensils"></i>Hantera meny</a>
+                <a href="messages.html"><i class="fa-regular fa-message"></i>Inkomna meddelanden</a>
+                <a href="create.html"><i class="fa-regular fa-user"></i>Registrera ny användare</a>
+                <a href="index.html"><i class="fa-solid fa-circle-arrow-right"></i>Restaurang MÅ - Startsida</a>
+            </div>
+        </div>
+        <div id="social-media">
+            <a href="index.html"><i class="fa-brands fa-facebook"></i><i
+                    class="fa-brands fa-instagram"></i>@restaurangMÅ</a>
+        </div>
+        <div id="bottom-foot">
+            <p>&copy; 2024 Isa Westling</p>
+        </div>
     </footer>
+    </div>
 
 </body>
 
