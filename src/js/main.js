@@ -8,6 +8,8 @@ import { makeBooking } from "./booking.js";
 import { sendMessage } from "./contact.js";
 import { createReview } from "./review.js";
 import { fetchReviews } from "./review.js";
+import { fetchBookings } from "./booking.js";
+import { fetchMessages } from "./contact.js";
 
 // Hämtar element och lagrar i variabler
 const loginBtn = document.getElementById("submit-login");
@@ -55,6 +57,16 @@ function init() {
             closeIcon.style.transform = "translate(-50%, -50%) rotate(-360deg)"; // Återställer kryssikonens rotation
         }
     });
+
+    // Kontrollerar om sökvägen innehåller "/mybookings"
+    if (window.location.pathname.includes("/mybookings")) {
+        fetchBookings(); // Anropar isåfall funktion för att hämta bokningar
+    }
+
+    // Kontrollerar om sökvägen innehåller "/messages"
+    if (window.location.pathname.includes("/messages")) {
+        fetchMessages(); // Anropar isåfall funktion för att hämta bokningar
+    }
 
     // Kontrollerar om container för meny existerar
     if (menuContainer) {
