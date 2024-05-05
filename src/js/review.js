@@ -8,15 +8,15 @@ import { reviewsContainer } from "./main"; // Importerar container för recensio
 export async function createReview() {
 
     // Hämtar värdena från formuläret
-    const name = document.getElementById("name").value;
-    const rating = document.getElementById("rating").value;
-    const comment = document.getElementById("comment").value;
+    let name = document.getElementById("name");
+    let rating = document.getElementById("rating");
+    let comment = document.getElementById("comment");
 
     // Skapar ett objekt med recensionens information
     const reviewInfo = {
-        name,
-        rating,
-        comment
+        name: name.value,
+        rating: rating.value,
+        comment: comment.value
     };
 
     try {
@@ -38,6 +38,21 @@ export async function createReview() {
             displayErrors(result.errors);  // Anropar funktion för att visa felen
             return; // Avbryter funktionen
         } else {
+
+            // Tömmer inputfälten
+            name.value = "";
+            rating.value = "";
+            comment.value = "";
+
+            const popupMsg = document.querySelector(".popup"); // Hämtar element för popup
+            popupMsg.classList.add("show"); // Lägger till klassen show för popup när erfarenheten har skapats
+            popupMsg.innerHTML = "Recension skapad"; // Skapar innehållet för popupen
+
+            // Döljer popup efter 3 sekunder
+            setTimeout(function () {
+                popupMsg.classList.remove("show"); // Tar bort show-klassen
+                popupMsg.innerHTML = ""; // Tömmer innehållet
+            }, 3000); // 3 sekunder
             fetchReviews(); // Anropar funktion för att hämta recensionerna
         }
         // Fångar upp ev. fel
@@ -57,7 +72,6 @@ export async function fetchReviews() {
         }
         // Inväntar svar och konverterar till json
         const reviews = await response.json();
-
         displayReviews(reviews); // Anropar funktion för att visa recensioner, skickar med recensionerna
         // Fångar upp ev. fel
     } catch (error) {
@@ -67,7 +81,14 @@ export async function fetchReviews() {
 
 // Funktion för att visa alla recensioner
 function displayReviews(reviews) {
-    reviewsContainer.innerHTML = ""; // Rensar befintliga recensioner
+
+    // Beräknar genomsnittsbetyget genom att anropa funktion med recensionerna som argument
+    const averageRating = calculateRating(reviews);
+
+    reviewsContainer.innerHTML = `<h2>Våra omdömen - ${averageRating}</h2>`; // Rensar befintliga recensioner och sätter rubriken till medelbetyget
+
+    // Sorterar recensionerna så att den senaste alltid visas först (högst upp baserat på datum)
+    reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     // Loopar igenom varje recension
     reviews.forEach(review => {
@@ -81,4 +102,21 @@ function displayReviews(reviews) {
             `;
         reviewsContainer.appendChild(div); // Lägger till diven i containern för recensioner
     });
+}
+
+// Funktion för att beräkna genomsnittsbetyget
+function calculateRating(reviews) {
+
+    let rate = 0;  // Rating, startar på 0
+    let amount = 0;  // Antalet betyg, startar på 0
+
+    // Loopar igenom alla recensioner och summerar betygen
+    for (let i = 0; i < reviews.length; i++) {
+        rate += reviews[i].rating; // Lägger till betyg i rating
+        amount++;  // Ökar räknaren för varje betyg
+    }
+
+    // Beräknar genomsnittet genom att dela totala summan med antalet betyg
+    const averageRating = rate / amount;
+    return averageRating.toFixed(1);  // Formaterar betyget till en decimal och returnerar medelbetyg
 }
