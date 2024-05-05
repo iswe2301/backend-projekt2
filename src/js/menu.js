@@ -1,6 +1,7 @@
 "use strict"
 
 import { url } from "./main"; // Importerar URL
+import { menuContainer } from "./main"; // Importerar container för meny
 
 // Asynkron funktion för att hämta menyn
 export async function fetchMenu() {
@@ -22,9 +23,6 @@ export async function fetchMenu() {
 
 // Funktion för att visa menyn med rätter
 function displayMenu(dishes) {
-
-    // Hämtar ett DOM-element där menyn ska visas
-    const menu = document.getElementById("menu-list");
 
     // Definierar huvudkategorierna för rätterna som ett objekt
     const mainCategories = {
@@ -108,7 +106,7 @@ function displayMenu(dishes) {
                 section.appendChild(div);
             }
             // Lägger till den sektionen i menyn
-            menu.appendChild(section);
+            menuContainer.appendChild(section);
         }
     });
 }
