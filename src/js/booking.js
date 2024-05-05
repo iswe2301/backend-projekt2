@@ -43,8 +43,8 @@ export async function makeBooking() {
             displayErrors(result.errors);  // Anropar funktion för att visa felen
             return; // Avbryter funktionen
         } else {
-            alert("Vi har tagit emot ditt önskemål om att boka bord. Vi återkommer till dig med en bekräftelse så snart vi hanterat bokningen.");
-            window.location.reload(); // Laddar om sidan
+            localStorage.setItem("bookingDetails", JSON.stringify({ name, phone, email, date, guests, specialRequests })); // Sparar bokning i localStorage
+            window.location.href = "/confirm.html"; // Omdirigerar till bekräftelsesidan
         }
         // Fångar upp ev. fel
     } catch (error) {
