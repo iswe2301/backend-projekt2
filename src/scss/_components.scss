@@ -6,14 +6,9 @@
 button {
     @extend %button-style;
     width: 50%;
-    height: 4rem;
+    padding: 1.2rem 0.5rem;
     margin: 1rem 0;
     font-size: 1.6rem;
-    background-color: abstracts.$link-color;
-
-    &:hover {
-        background-color: darken(abstracts.$hover-color, 10%);
-    }
 }
 
 // Fixerar bakgrundsblder (picture-tagg) med 100% höjd/bredd
@@ -26,11 +21,12 @@ button {
     left: 0;
 }
 
-// Sätter bakgrundsbilde till 100% höjd/bredd och cover för att bilden ska täcka enligt rätt förhållanden
+// Sätter bakgrundsbilden till 100% höjd/bredd och cover för att bilden ska täcka enligt rätt förhållanden
 #background-img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    filter: brightness(50%); // Minskar ljusstyrkan på bilden
 }
 
 // Storlek för bilder
@@ -42,18 +38,19 @@ img {
 // ID-styling för felmeddelande
 #error-message {
     display: none;
+    flex-direction: column;
     justify-content: center;
     color: abstracts.$delete-btn-color;
     font-size: 1.4rem;
     font-weight: 600;
 }
 
-// Styling för popup vid klick på skapa jobberfarenhet
+// Styling för popup
 .popup {
     width: 100%;
     height: 0;
-    background-color: abstracts.$link-color;
-    color: white;
+    background-color: antiquewhite;
+    color: black;
     text-align: center;
     position: fixed;
     left: 0;
@@ -152,25 +149,29 @@ img {
     margin-right: 2rem;
 }
 
+// Styling för meny
 #menu-list {
     width: 100%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: antiquewhite;
     padding: 2rem 2rem 6rem 2rem;
+    border-radius: 10px;
 
     section {
         margin: 2rem 0;
     }
-    
+
     div {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    h2, h3 {
+    h2,
+    h3 {
         display: flex;
         justify-content: center;
     }
@@ -179,6 +180,51 @@ img {
         margin: 4rem 0 2rem 0;
     }
 
+    p {
+        text-align:center;
+    }
+
+}
+
+// Styling för recensions-container
+#reviews-container {
+    width: 100%;
+    max-width: 600px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: black;
+        color: white;
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: 10px;
+    }
+
+    h2, h3 {
+        color: white;
+        text-align: center;
+    }
+}
+
+// Styling för review-formulär
+#review-form {
+    h2 {
+        margin: 0 0 2rem 0;
+    }
+}
+
+// Styling för bekräftelse-container
+#confirmation {
+    background-color: antiquewhite;
+    padding: 0 4rem 3rem 4rem;
+    max-width: 500px;
+    margin-top: 2rem;
+
+    h2 {
+        margin: 4rem auto 2rem auto;
+    }
 }
 
 // Keyframes för animering
@@ -192,13 +238,6 @@ img {
     }
 }
 
-// Ökar bredd vid mindre skrämar (max 1024px)
-@media (max-width: 1024px) {
-    .popup.show {
-        height: 7rem;
-    }
-}
-
 // Styling vid mindre skrämar (max 600px)
 @media (max-width: 600px) {
 
@@ -209,9 +248,5 @@ img {
     button {
         width: 100%;
         margin: 2rem 0 0 0;
-    }
-
-    .popup.show {
-        height: 8rem;
     }
 }
