@@ -11,7 +11,7 @@
         rel="stylesheet">
     <script src="js/main.js" type="module"></script>
     <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
-    <title>MÅ. | Hem</title>
+    <title>MÅ. | Bokningar</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
@@ -45,24 +45,20 @@
         <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ."></a>
         <nav id="menu">
             <ul>
-                <li><a class="active" href="index.html">Hem</a></li>
-                <li><a href="menu.html">Meny</a></li>
-                <li><a href="booking.html">Boka bord</a></li>
-                <li><a href="contact.html">Kontakta oss</a></li>
-                <li><a href="review.html">Recensioner</a></li>
-                <li><a href="about.html">Om oss</a></li>
+                <li><a class="active" href="mybookings.html">Bokningar</a></li>
+                <li><a href="mymenu.html">Meny</a></li>
+                <li><a href="messages.html">Meddelanden</a></li>
+                <li><a href="create.html">Ny användare</li>
             </ul>
         </nav>
         <!-- Mobilmeny -->
         <div class="menu-container">
             <nav class="mobile-menu">
                 <ul>
-                    <li><a class="active" href="index.html">Hem</a></li>
-                    <li><a href="menu.html">Meny</a></li>
-                    <li><a href="booking.html">Boka bord</a></li>
-                    <li><a href="contact.html">Kontakta oss</a></li>
-                    <li><a href="review.html">Recensioner</a></li>
-                    <li><a href="about.html">Om oss</a></li>
+                    <li><a class="active" href="mybookings.html">Bokningar</a></li>
+                    <li><a href="mymenu.html">Meny</a></li>
+                    <li><a href="messages.html">Meddelanden</a></li>
+                    <li><a href="create.html">Ny användare</li>
                 </ul>
             </nav>
             <!-- Knapp för att växla mobilmenyns synlighet -->
@@ -73,6 +69,12 @@
         </div>
     </header>
 
+    <div id="user-manager">
+        <!-- Knapp för att logga ut, visar användarnman från JS -->
+        <span id="logged-in"></span>
+        <button id="log-out">Logga ut <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    </div>
+
     <!-- Huvudinnehåll -->
     <main>
         <div id="content">
@@ -80,42 +82,20 @@
             <div id="booking-container"></div>
         </div>
         <!-- Visas när användaren inte är behörig / innan content laddats in korrekt -->
-            <span id="loading">Laddar innehåll...</span>
-            <span class="loader"></span>
+        <span id="loading">Laddar innehåll...</span>
+        <span class="loader"></span>
     </main>
 
     <!-- Footer med diverse länkar -->
     <footer>
         <div id="footer-content">
             <div class="footer-col">
-                <h2>Kontakta oss</h2>
-                <a href="tel:010-123456"><i class="fa-solid fa-phone"></i> 010-123 45 67</a>
-                <a href="contact.html"><i class="fa-regular fa-envelope"></i>Skicka meddelande</a>
-                <h2>Hitta hit</h2>
-                <p><i class="fa-solid fa-location-dot"></i> Torggatan 4<br>
-                    123 45 Måberg</p>
-            </div>
-            <div class="footer-col">
-                <h2>Öppettider</h2>
-                <ul>
-                    <li><strong>Söndag:</strong> Stängt</li>
-                    <li><strong>Måndag:</strong> Stängt</li>
-                    <li><strong>Tisdag:</strong> 11-21</li>
-                    <li><strong>Onsdag:</strong> 11-22</li>
-                    <li><strong>Torsdag:</strong> 11-22</li>
-                    <li><strong>Fredag:</strong> 11-01</li>
-                    <li><strong>Lördag:</strong> 12-01</li>
-                </ul>
-            </div>
-            <div class="footer-col">
                 <h2>Snabblänkar</h2>
-                <a href="index.html"><i class="fa-solid fa-house"></i> Hem</a>
-                <a href="menu.html"><i class="fa-solid fa-utensils"></i>Meny</a>
-                <a href="booking.html"><i class="fa-solid fa-calendar"></i> Boka</a>
-                <a href="contact.html"><i class="fa-regular fa-message"></i> Kontakt</a>
-                <a href="review.html"><i class="fa-regular fa-star"></i> Recensioner</a>
-                <a href="about.html"><i class="fa-solid fa-circle-info"></i> Om oss</a>
-                <a href="login.html"><i class="fa-regular fa-user"></i> MYMÅ</a>
+                <a href="mybookings.html"><i class="fa-solid fa-calendar"></i>Se bokningar</a>
+                <a href="mymenu.html"><i class="fa-solid fa-utensils"></i>Hantera meny</a>
+                <a href="messages.html"><i class="fa-regular fa-message"></i>Inkomna meddelanden</a>
+                <a href="create.html"><i class="fa-regular fa-user"></i>Registrera ny användare</a>
+                <a href="index.html"><i class="fa-solid fa-circle-arrow-right"></i>Restaurang MÅ - Startsida</a>
             </div>
         </div>
         <div id="social-media">
