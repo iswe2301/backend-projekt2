@@ -3,10 +3,10 @@
 import { errorMsg } from "./main"; // Importerar container för felmeddelanden
 import { url } from "./main"; // Importerar url
 
-// Hämtar element från DOM
-const loadingEl = document.getElementById("loading");
-const contentEl = document.getElementById("content");
-const loadingIcon = document.querySelector(".loader");
+// Hämtar element från DOM, skapar exporterbara moduler
+export const loadingEl = document.getElementById("loading");
+export const contentEl = document.getElementById("content");
+export const loadingIcon = document.querySelector(".loader");
 
 // Asynkron funktion för att genomföra en bokning
 export async function makeBooking() {
@@ -137,7 +137,7 @@ function displayBookings(bookings) {
                 booking.specialRequests = "Inga"; // Sätter innehållet till "inga" istället
             }
 
-            // Skapar en article för varje bokning
+            // Skapar en div för varje bokning
             const div = document.createElement("div");
 
             // Sätter divens innehåll till bokningsinformationen, formatterar datum enligt svensk standard
