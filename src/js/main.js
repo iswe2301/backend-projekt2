@@ -10,6 +10,7 @@ import { createReview } from "./review.js";
 import { fetchReviews } from "./review.js";
 import { fetchBookings } from "./booking.js";
 import { fetchMessages } from "./contact.js";
+import { contentEl } from "./booking.js";
 
 // Hämtar element och lagrar i variabler
 const loginBtn = document.getElementById("submit-login");
@@ -171,11 +172,19 @@ function init() {
 
     // Kontrollerar om formulär för att skapa ny användare finns på sidan
     if (userForm) {
-        // Skapar isåfall en händelselyssnare vid klick
-        userBtn.addEventListener("click", (event) => {
-            event.preventDefault(); // Förhindrar formulärets standardbeteende (så att sidan inte laddas om)
-            createUser();  // Anropar createUser funktionen
-        });
+        const token = localStorage.getItem("JWT"); // Hämtar token från localStorage
+        // Kontrollerar om token saknas
+        if (!token) {
+            alert("Du är inte inloggad eller din session har gått ut. Vänligen logga in igen."); // Skriver ut felmeddelande till klienten
+            window.location.href = "login.html"; // Omdirigerar till inloggningssidan
+        } else {
+            contentEl.style.display = "block"; // Visar innehållet på sidan
+            // Skapar en händelselyssnare vid klick
+            userBtn.addEventListener("click", (event) => {
+                event.preventDefault(); // Förhindrar formulärets standardbeteende (så att sidan inte laddas om)
+                createUser();  // Anropar createUser funktionen
+            });
+        }
 
         // Hämtar alla input-element från formuläret och lagrar i variabel
         const formInputs = userForm.querySelectorAll("input");
