@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="scss/main.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <script src="js/main.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
+    <title>MÅ. | Logga in</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <div id="overlay" class="hidden"></div>
+    <!-- Picturetagg med bakgrundbild i olika filformat / storlekar -->
+    <picture class="body-background">
+        <source srcset="images/background.jpg?as=avif" media="(min-width: 1921px)" type="image/avif">
+        <source srcset="images/background.jpg?as=webp" media="(min-width: 1921px)" type="image/webp">
+        <source srcset="images/background.jpg" media="(min-width: 1921px)" type="image/jpeg">
+        <source srcset="images/background.jpg?as=avif&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/avif">
+        <source srcset="images/background.jpg?as=webp&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/webp">
+        <source srcset="images/background.jpg?width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
+            type="image/jpeg">
+        <source srcset="images/background.jpg?as=avif&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/avif">
+        <source srcset="images/background.jpg?as=webp&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/webp">
+        <source srcset="images/background.jpg?width=1200" media="(min-width: 801px) and (max-width: 1200px)"
+            type="image/jpeg">
+        <source srcset="images/background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
+        <source srcset="images/background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
+        <source srcset="images/background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
+        <img id="background-img" src="images/background.jpg" alt="Restaurang">
+    </picture>
+
+    <!-- Header med logotyp -->
+    <header>
+        <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ."></a>
+        <nav id="menu">
+            <ul>
+                <li><a class="active" href="index.html">Hem</a></li>
+                <li><a href="menu.html">Meny</a></li>
+                <li><a href="booking.html">Boka bord</a></li>
+                <li><a href="contact.html">Kontakta oss</a></li>
+                <li><a href="review.html">Recensioner</a></li>
+                <li><a href="about.html">Om oss</a></li>
+            </ul>
+        </nav>
+        <!-- Mobilmeny -->
+        <div class="menu-container">
+            <nav class="mobile-menu">
+                <ul>
+                    <li><a class="active" href="index.html">Hem</a></li>
+                    <li><a href="menu.html">Meny</a></li>
+                    <li><a href="booking.html">Boka bord</a></li>
+                    <li><a href="contact.html">Kontakta oss</a></li>
+                    <li><a href="review.html">Recensioner</a></li>
+                    <li><a href="about.html">Om oss</a></li>
+                </ul>
+            </nav>
+            <!-- Knapp för att växla mobilmenyns synlighet -->
+            <button class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </header>
+
+
+    <!-- Huvudinnehåll -->
+    <main>
+
+        <!-- Formulär för att logga in användare -->
+        <div class="login-section">
+            <h1>Logga in</h1>
+            <form id="loginForm" method="POST">
+                <div class="form-group">
+                    <label for="username">Användarnamn</label>
+                    <input type="text" id="username" name="username" required placeholder="Ange användarnamn...">
+                </div>
+                <div class="form-group">
+                    <label for="password">Lösenord</label>
+                    <input type="password" id="password" name="password" required placeholder="Ange lösenord...">
+                </div>
+                <!-- Visar ev. felmeddelanden -->
+                <span id="error-message"></span>
+                <!-- Laddningssymbol som visas när begäran att logga in behandlas -->
+                <div id="submit-section"><span class="loader"></span>
+                    <button type="submit" id="submit-login">Logga in <i
+                            class="fa-solid fa-arrow-right-to-bracket"></i></button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer med diverse länkar -->
+    <footer>
+        <div id="footer-content">
+            <div class="footer-col">
+                <h2>Kontakta oss</h2>
+                <a href="tel:010-123456"><i class="fa-solid fa-phone"></i> 010-123 45 67</a>
+                <a href="contact.html"><i class="fa-regular fa-envelope"></i>Skicka meddelande</a>
+                <h2>Hitta hit</h2>
+                <p><i class="fa-solid fa-location-dot"></i> Torggatan 4<br>
+                    123 45 Måberg</p>
+            </div>
+            <div class="footer-col">
+                <h2>Öppettider</h2>
+                <ul>
+                    <li><strong>Söndag:</strong> Stängt</li>
+                    <li><strong>Måndag:</strong> Stängt</li>
+                    <li><strong>Tisdag:</strong> 11-21</li>
+                    <li><strong>Onsdag:</strong> 11-22</li>
+                    <li><strong>Torsdag:</strong> 11-22</li>
+                    <li><strong>Fredag:</strong> 11-01</li>
+                    <li><strong>Lördag:</strong> 12-01</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2>Snabblänkar</h2>
+                <a href="index.html"><i class="fa-solid fa-house"></i> Hem</a>
+                <a href="menu.html"><i class="fa-solid fa-utensils"></i>Meny</a>
+                <a href="booking.html"><i class="fa-solid fa-calendar"></i> Boka</a>
+                <a href="contact.html"><i class="fa-regular fa-message"></i> Kontakt</a>
+                <a href="review.html"><i class="fa-regular fa-star"></i> Recensioner</a>
+                <a href="about.html"><i class="fa-solid fa-circle-info"></i> Om oss</a>
+                <a href="login.html"><i class="fa-regular fa-user"></i> MYMÅ</a>
+            </div>
+        </div>
+        <div id="social-media">
+            <a href="index.html"><i class="fa-brands fa-facebook"></i><i
+                    class="fa-brands fa-instagram"></i>@restaurangMÅ</a>
+        </div>
+        <div id="bottom-foot">
+            <p>&copy; 2024 Isa Westling</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
