@@ -3,6 +3,11 @@
 import { errorMsg } from "./main"; // Importerar container för felmeddelanden
 import { url } from "./main"; // Importerar url
 
+// Hämtar element från DOM
+const loadingEl = document.getElementById("loading");
+const contentEl = document.getElementById("content");
+const loadingIcon = document.querySelector(".loader");
+
 // Asynkron funktion för att genomföra en bokning
 export async function makeBooking() {
 
@@ -64,4 +69,89 @@ export function displayErrors(errors) {
         errorMessage.textContent = error.message; // Sätter innehållet i paragrafen till error-meddelandet
         errorMsg.appendChild(errorMessage); // Lägger till paragrafen i containern för felmeddelanden
     });
+}
+
+// Asynkron funktion för att hämta bokningar (exporteras som modul)
+export async function fetchBookings() {
+
+    const token = localStorage.getItem("JWT"); // Hämtar token från localStorage
+
+    loadingIcon.style.display = "block"; // Visar laddningsikon
+
+    // Skickar ett GET-anrop med fetch API till webbtjänsten, skickar med token i header
+    try {
+        const response = await fetch(`${url}bookings`, {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        const result = await response.json(); // Inväntar svaret och konverterar till json
+
+        // Kontrollerar om token saknas eller är ogiltig
+        if (response.status === 401 || response.status === 403) {
+            alert(`${result.message}. Du är inte inloggad eller din session har gått ut. Vänligen logga in igen.`); // Skriver ut felmeddelande till klienten
+            window.location.href = "login.html"; // Omdirigerar till inloggningssidan
+            return;
+
+            // Vid lyckat svar
+        } else {
+            displayBookings(result); // Anropar funktion för att visa bokningar med svaret från anropet
+        }
+
+    } catch (error) {
+        console.error("Något gick fel vid hämtning av bokningar: ", error); // Fångar upp ev. felmeddelanden
+    }
+}
+
+// Funktion för att visa befintliga bokningar
+function displayBookings(bookings) {
+
+    loadingIcon.style.display = "none"; // Döljer laddningsikon
+    loadingEl.style.display = "none"; // Döljer span för "laddning" av sidan
+    contentEl.style.display = "block"; // Visar innehållet på sidan
+
+    // Hämtar container för bokningar och lagrar i variabel
+    const bookingContainer = document.getElementById("booking-container");
+
+    // Kontrollerar om containern existerar på sidan
+    if (bookingContainer) {
+        bookingContainer.innerHTML = ""; // Tömmer tidigare innehåll
+
+        const today = new Date(); // Skapar ett nytt date objekt
+        const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()); // Hämtar aktuellt år, månad och datum per månad
+
+        // Filtrerar bokningarna för att endast inkludera framtida datum, bokningsdatum ska vara större eller = dagens datum (startdatum)
+        const futureBookings = bookings.filter(booking => new Date(booking.date) >= startDate);
+
+        // Sorterar de filtrerade bokningarna så att den tidigaste bokningen visas först
+        futureBookings.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        // Loopar igenom varje bokning
+        futureBookings.forEach(booking => {
+
+            // Kontrollerar om inga speciella önskemål har angetts
+            if (booking.specialRequests === undefined) {
+                booking.specialRequests = "Inga"; // Sätter innehållet till "inga" istället
+            }
+
+            // Skapar en article för varje bokning
+            const div = document.createElement("div");
+
+            // Sätter divens innehåll till bokningsinformationen, formatterar datum enligt svensk standard
+            div.innerHTML = `
+            <h3>${booking.name}</h3>
+            <p><strong>Tid för bokning:</strong> ${new Date(booking.date).toLocaleString("sv-SE")}</p>
+            <p><strong>Antal gäster:</strong> ${booking.guests}</p>
+            <p><strong>Telefon:</strong> ${booking.phone}</p>
+            <p><strong>E-post:</strong> ${booking.email}</p>
+            <p><strong>Speciella önskemål:</strong> ${booking.specialRequests}</p>
+        `;
+
+            // Lägger till div i container för att skriva ut till DOM
+            bookingContainer.appendChild(div);
+        });
+    }
 }
