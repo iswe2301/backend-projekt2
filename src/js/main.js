@@ -17,6 +17,7 @@ const logOutBtn = document.getElementById("log-out");
 const bookingForm = document.getElementById("booking-form");
 const bookingBtn = document.getElementById("bookBtn");
 const menuContainer = document.getElementById("menu-list");
+const confirmation = document.getElementById("confirmation");
 export let errorMsg = document.getElementById("error-message");
 export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 
@@ -104,5 +105,21 @@ function init() {
                 errorMsg.style.display = "none"; // Döljer felmeddelandet vid input
             });
         });
+    }
+
+    const bookingDetails = JSON.parse(localStorage.getItem("bookingDetails")); // Hämtar bokningsdetaljer från localStorage
+    // Kontrollerar om bokningsdetaljer och container för beekräftelse finns
+    if (confirmation && bookingDetails) {
+        // Skriver ut bekräftelsemeddelande på bokning
+        confirmation.innerHTML = `
+        <h2>Tack för din bokning!</h2>
+        <p>En bokningsbekräftelse har skickats till dig per e-post.</p>
+        <p><strong>Din bokning:</strong></p>
+        <p>Namn: ${bookingDetails.name}</p>
+        Telefonnummer: ${bookingDetails.phone}</p>
+        E-post: ${bookingDetails.email}</p>
+        Tid för bokning: ${bookingDetails.date}</p>
+        Antal personer: ${bookingDetails.guests}</p>
+        Speciella önskemål: ${bookingDetails.specialRequests}</p>`;
     }
 };
