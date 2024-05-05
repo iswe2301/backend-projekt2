@@ -1,11 +1,11 @@
 "use strict";
 
-// Importerar modul
+// Importerar moduler
 import { errorMsg } from "./main";
+import { url } from "./main";
 
 // Asynkron funktion för att logga in användare
 export async function loginUser() {
-    const url = "https://backend-moment4-1.onrender.com/api/login"; // Lagrar url för API
     const username = document.getElementById("username").value; // Hämtar användarnamnet från formuläret
     const password = document.getElementById("password").value; // Hämtar lösenordet från formuläret
     const loadingEl = document.querySelector(".loader"); // Hämtar ikon för laddningssymbol
@@ -21,7 +21,7 @@ export async function loginUser() {
         }
 
         // Skickar ett POST-anrop med fetch API till webbtjänsten med objektet som skapats för användaren
-        const response = await fetch(url, {
+        const response = await fetch(`${url}login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export async function loginUser() {
         } else {
             localStorage.setItem("JWT", data.response.token); // Sparar JWT-token i localStorage
             localStorage.setItem("username", username); // Sparar användarnamnet i localStorage
-            window.location.href = "/get.html"; // Omdirigerar användaren till get-sidan
+            window.location.href = "/mybookings.html"; // Omdirigerar användaren till bokningssidan
         }
 
         // Fångar upp ev fel
