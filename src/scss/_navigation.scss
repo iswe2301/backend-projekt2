@@ -1,0 +1,203 @@
+@use 'abstracts';
+
+/* Styling och position för header */
+header {
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 3;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.70);
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    img {
+        padding: 1rem;
+        width: 100%;
+        height: auto;
+        max-height: 80px;
+    }
+}
+
+
+/* Meny/navigering för datorvy, fixerad position */
+nav {
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    font-family: "Playfair", Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+    z-index: 2;
+
+    /* Visar lista i flex row */
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 0;
+        margin: 0;
+
+        li {
+            list-style-type: none;
+            padding: 0 3rem;
+        }
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.active {
+    text-decoration: underline !important;
+    text-decoration-color: white !important;
+    text-underline-offset: 0.5rem !important;
+}
+
+.menu-container {
+    display: none;
+}
+
+// Styling för enheter mindre än 600px bredd
+@media (max-width: 1024px) {
+
+    // Döljer ord. nav-meny
+    #menu {
+        display: none;
+    }
+
+    // Container för mobilmenyn, fixerad längst ner på skärmen
+    .menu-container {
+        display: flex;
+        text-align: center;
+        width: 6rem;
+        z-index: 2;
+    }
+
+    // Styling för mobilmeny, fixerad position
+    .mobile-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 50vw; // Tar upp 50 vw
+        height: 50vw; // Tar upp 50 vw
+        border-radius: 50%; // Rundad form
+        background-color: black;
+        transform: translate(-50%, -50%) scale(0); // Centrerar cirkeln och börjar skalad till 0
+        transition: transform 0.5s ease; // Animationstiden för att visa/dölja menyn
+        z-index: 1; // Ser till att menyn är under menyknappen
+        box-shadow: 0 -8px 12px 2px rgb(0 0 0 / 20%); // Skugga på mobilmenyn
+    }
+
+    // Styling när klassen .show läggs till
+    .mobile-menu.show {
+        transform: translate(-50%, -50%) scale(1); // Expanderar menyn till full storlek
+    }
+
+    // Styling för menyknappen
+    .menu-toggle {
+        background-color: black;
+        color: rgb(255, 255, 255) !important;
+        border: none;
+        cursor: pointer;
+        @include abstracts.heading-style(3rem, 3rem, 600);
+        z-index: 3; // Ser till att knappen är över både menyn och container
+
+        &:hover {
+            background-color: black;
+        }
+
+        // Stylingr för ikonerna inom .menu-toggle
+        i {
+            transition: transform 0.3s ease, opacity 0.3s ease; // Animerar rotation och opacitet
+            position: absolute; // Absolut positionering i förhållande till .menu-toggle
+            top: 50%;
+            right: 1rem;
+            transform: translate(-50%, -50%) rotate(0deg); // Centrerar och ingen initial rotation
+            transform-origin: 50% 50%; // Rotationscentrum i ikonens mitt
+        }
+
+        // Specifika stilar när .fa-bars är aktiv
+        .fa-bars {
+            opacity: 1; // Gör menyikonen synlig initialt
+        }
+
+        // Specifika stilar när .fa-xmark är aktiv
+        .fa-xmark {
+            opacity: 0; // Gör kryssikonen är osynlig initialt
+            transform: translate(-50%, -50%) rotate(-360deg); // Startläge för rotationen vid övergång
+        }
+    }
+
+    nav {
+        margin: 0;
+        border: none;
+
+        ul {
+            flex-direction: column; // Ändrar flex-direction
+
+            li {
+                margin: 1.5rem 0;
+
+                a {
+                    font-size: 2rem;
+                    font-family: abstracts.$font-heading;
+                    font-weight: 400;
+                    letter-spacing: 0.2rem;
+                    text-decoration: none;
+                    padding: 1.5rem 4rem;
+                    color: abstracts.$light-text-color;
+
+                    &:active {
+                        color: abstracts.$link-color;
+                    }
+                }
+            }
+        }
+    }
+
+    // Döljer overlay initialt
+    #overlay.hidden {
+        display: none;
+    }
+
+    // Klass för opacitet när mobilmeny öppnas (JS)
+    #overlay.opacity {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Mindre enheter
+@media (max-width: 800px) {
+    .mobile-menu {
+        width: 70vw; // Ökar storlek
+        height: 70vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .mobile-menu {
+        width: 100vw; // Ökar storlek
+        height: 100vw;
+    }
+}
