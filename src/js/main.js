@@ -3,9 +3,9 @@
 // Importerar moduler
 import { loginUser } from "./login.js";
 import { createUser } from "./create.js";
-import { fetchExperiences } from "./get.js";
 import { fetchMenu } from "./menu.js";
 import { makeBooking } from "./booking.js";
+import { sendMessage } from "./contact.js";
 
 // Hämtar element och lagrar i variabler
 const loginBtn = document.getElementById("submit-login");
@@ -16,6 +16,8 @@ const loggedInUser = document.getElementById("logged-in")
 const logOutBtn = document.getElementById("log-out");
 const bookingForm = document.getElementById("booking-form");
 const bookingBtn = document.getElementById("bookBtn");
+const contactBtn = document.getElementById("contactBtn");
+const contactForm = document.getElementById("contact-form");
 const menuContainer = document.getElementById("menu-list");
 const confirmation = document.getElementById("confirmation");
 export let errorMsg = document.getElementById("error-message");
@@ -44,14 +46,28 @@ function init() {
         });
     }
 
+    // Kontrollerar om kontaktknapp finns på sidan
+    if (contactBtn) {
+        // Läghger till händelselyssnare
+        contactBtn.addEventListener("click", (event) => {
+            event.preventDefault(); // Förhindrar formulärets standardbeteende
+            sendMessage(); // Anropar funktion för att skicka meddelande
+        });
+
+        // Hämtar alla input-element från formuläret och lagrar i variabel
+        const formInputs = contactForm.querySelectorAll("input");
+
+        // Lägger till händelselyssnare för varje input i formuläret
+        formInputs.forEach(input => {
+            input.addEventListener("input", () => {
+                errorMsg.style.display = "none"; // Döljer felmeddelandet vid input
+            });
+        });
+    }
+
     // Kontrollerar om container för meny existerar
     if (menuContainer) {
         fetchMenu(); // Anropar funktion för att hämta menyn
-    }
-
-    // Kontrollerar om sökvägen innehåller "/get"
-    if (window.location.pathname.includes("/get")) {
-        fetchExperiences(); // Anropar isåfall funktion för att hämta jobberfarenheter
     }
 
     const username = localStorage.getItem("username"); // Hämtar lösenordet från localStorage
@@ -107,19 +123,43 @@ function init() {
         });
     }
 
-    const bookingDetails = JSON.parse(localStorage.getItem("bookingDetails")); // Hämtar bokningsdetaljer från localStorage
-    // Kontrollerar om bokningsdetaljer och container för beekräftelse finns
-    if (confirmation && bookingDetails) {
-        // Skriver ut bekräftelsemeddelande på bokning
-        confirmation.innerHTML = `
-        <h2>Tack för din bokning!</h2>
-        <p>En bokningsbekräftelse har skickats till dig per e-post.</p>
-        <p><strong>Din bokning:</strong></p>
-        <p>Namn: ${bookingDetails.name}</p>
-        Telefonnummer: ${bookingDetails.phone}</p>
-        E-post: ${bookingDetails.email}</p>
-        Tid för bokning: ${bookingDetails.date}</p>
-        Antal personer: ${bookingDetails.guests}</p>
-        Speciella önskemål: ${bookingDetails.specialRequests}</p>`;
+    const type = localStorage.getItem("type"); // Hämtar typ av information som sparats i localStorage senast
+
+    // Kontrollerar container för bekräftelse finns
+    if (confirmation) {
+        // Kontrollerar om typen av information är bokning
+        if (type === "booking") {
+            // Hämtar bokningsdetaljer från localStorage
+            const bookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
+            // Skriver ut bekräftelsemeddelande på bokning
+            confirmation.innerHTML = `
+            <h2>Tack för din bokning!</h2>
+            <p>En bokningsbekräftelse har skickats till dig per e-post.</p>
+            <p><strong>Din bokning:</strong></p>
+            <p>Namn: ${bookingDetails.name}</p>
+            Telefonnummer: ${bookingDetails.phone}</p>
+            E-post: ${bookingDetails.email}</p>
+            Tid för bokning: ${bookingDetails.date}</p>
+            Antal personer: ${bookingDetails.guests}</p>
+            Speciella önskemål: ${bookingDetails.specialRequests}</p>`;
+
+            // Rensar localStorage efter att bokningen har visats
+            localStorage.removeItem("bookingDetails");
+            localStorage.removeItem("type");
+
+            // Kontrollerar om typen av information är meddelande
+        } else if (type === "message") {
+            // Hämtar meddelandedetaljer från localStorage
+            const contactDetails = JSON.parse(localStorage.getItem("contactDetails"));
+            confirmation.innerHTML = `
+            <h2>Tack för ditt meddelande!</h2>
+            <p>Vi har tagit emot ditt meddelande och kommer att återkomma till dig så snart som möjligt. En bekräftelse har skickats till dig per e-post.</p>
+            <p><strong>Ditt meddelande:</strong></p>
+            <p><em>${contactDetails.message}</em></p>`;
+
+            // Rensar localStorage efter att meddelandet har visats
+            localStorage.removeItem("contactDetails");
+            localStorage.removeItem("type");
+        }
     }
-};
+}
