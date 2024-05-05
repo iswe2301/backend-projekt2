@@ -11,7 +11,7 @@
         rel="stylesheet">
     <script src="js/main.js" type="module"></script>
     <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
-    <title>MÅ | Kontakta oss</title>
+    <title>MÅ. | Boka bord</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
@@ -40,57 +40,43 @@
         <img id="background-img" src="images/background.jpg" alt="Restaurang">
     </picture>
 
-    <!-- Header med logotyp -->
-    <header>
-        <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ"></a>
-        <nav id="menu">
+<!-- Header med logotyp -->
+<header>
+    <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ."></a>
+    <nav id="menu">
+        <ul>
+            <li><a href="index.html">Hem</a></li>
+            <li><a href="menu.html">Meny</a></li>
+            <li><a href="booking.html">Boka bord</a></li>
+            <li><a href="contact.html">Kontakta oss</a></li>
+            <li><a href="review.html">Recensioner</a></li>
+            <li><a class="active" href="about.html">Om oss</a></li>
+        </ul>
+    </nav>
+    <!-- Mobilmeny -->
+    <div class="menu-container">
+        <nav class="mobile-menu">
             <ul>
                 <li><a href="index.html">Hem</a></li>
                 <li><a href="menu.html">Meny</a></li>
                 <li><a href="booking.html">Boka bord</a></li>
-                <li><a class="active" href="contact.html">Kontakta oss</a></li>
+                <li><a href="contact.html">Kontakta oss</a></li>
                 <li><a href="review.html">Recensioner</a></li>
-                <li><a href="about.html">Om oss</a></li>
+                <li><a class="active" href="about.html">Om oss</a></li>
             </ul>
         </nav>
-        <!-- Mobilmeny -->
-        <div class="menu-container">
-            <nav class="mobile-menu">
-                <ul>
-                    <li><a href="index.html">Hem</a></li>
-                    <li><a href="menu.html">Meny</a></li>
-                    <li><a href="booking.html">Boka bord</a></li>
-                    <li><a class="active" href="contact.html">Kontakta oss</a></li>
-                    <li><a href="review.html">Recensioner</a></li>
-                    <li><a href="about.html">Om oss</a></li>
-                </ul>
-            </nav>
-            <!-- Knapp för att växla mobilmenyns synlighet -->
-            <button class="menu-toggle">
-                <i class="fa-solid fa-bars"></i>
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-    </header>
+        <!-- Knapp för att växla mobilmenyns synlighet -->
+        <button class="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+</header>
 
     <!-- Huvudinnehåll -->
     <main>
-            <h1>Kontakta oss</h1>
-            <!-- Kontaktformulär -->
-            <form id="contact-form" method="POST">
-                <label for="name">Namn *</label>
-                <input type="text" id="name" name="name" placeholder="Ange ditt namn" required>
-                <label for="email">E-post *</label>
-                <input type="email" id="email" name="email" placeholder="Ange din e-postadress" required>
-                <label for="phone">Telefonnummer</label>
-                <input type="tel" id="phone" name="phone" placeholder="Ange ditt telefonnummer">
-                <label for="message">Meddelande *</label>
-                <textarea id="message" name="message" placeholder="Skriv ditt meddelande här..." required></textarea>
-                <!-- Skriver ut ev. felmeddelanden -->
-                <div id="error-message"></div>
-                <button type="submit" id="contactBtn">Skicka meddelande</button>
-            </form>
-        </main>
+        <h1>Om oss</h1>
+    </main>
 
     <!-- Footer med diverse länkar -->
     <footer>

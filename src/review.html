@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="scss/main.scss">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
     <script src="js/main.js" type="module"></script>
     <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
     <title>MÅ. | Recensioner</title>
@@ -40,47 +40,99 @@
         <img id="background-img" src="images/background.jpg" alt="Restaurang">
     </picture>
 
-    <!-- Header med logotyp och navigering -->
-    <header>
-        <a href="/"><img src="images/logo.svg" alt="Logotyp MÅ."></a>
-        <nav>
+ <!-- Header med logotyp -->
+ <header>
+    <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ."></a>
+    <nav id="menu">
+        <ul>
+            <li><a href="index.html">Hem</a></li>
+            <li><a href="menu.html">Meny</a></li>
+            <li><a href="booking.html">Boka bord</a></li>
+            <li><a href="contact.html">Kontakta oss</a></li>
+            <li><a class="active" href="review.html">Recensioner</a></li>
+            <li><a href="about.html">Om oss</a></li>
+        </ul>
+    </nav>
+    <!-- Mobilmeny -->
+    <div class="menu-container">
+        <nav class="mobile-menu">
             <ul>
-                <li>
-                    <a href="index.html">Hem</a>
-                    <a href="menu.html">Meny</a>
-                    <a href="booking.html">Boka bord</a>
-                    <a href="contact.html">Kontkta oss</a>
-                    <a href="review.html">Recensioner</a>
-                    <a href="about.html">Om oss</a>
-                </li>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="menu.html">Meny</a></li>
+                <li><a href="booking.html">Boka bord</a></li>
+                <li><a href="contact.html">Kontakta oss</a></li>
+                <li><a class="active" href="review.html">Recensioner</a></li>
+                <li><a href="about.html">Om oss</a></li>
             </ul>
         </nav>
-    </header>
+        <!-- Knapp för att växla mobilmenyns synlighet -->
+        <button class="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+</header>
 
     <!-- Huvudinnehåll -->
     <main>
         <h1>Recensioner</h1>
-        <section id="reviews-container"></section>
-        <h2>Lämna en recension</h2>
         <!-- Formulär för att lämna en recension -->
-        <form id="review-form">
-            <label for="name">Namn:</label>
-            <input type="text" id="name" name="name">
-            <label for="rating">Betyg (1-5):</label>
-            <input type="number" id="rating" name="rating" min="1" max="5" required>
-            <label for="comment">Kommentar:</label>
-            <textarea id="comment" name="comment"></textarea>
+        <form id="review-form" method="POST">
+            <h2>Lämna en recension</h2>
+            <label for="name">Namn *</label>
+            <input type="text" id="name" name="name" placeholder="Ange ditt namn" required>
+            <label for="rating">Betyg *</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" placeholder="Ange betyg i skalan 1-5" required>
+            <label for="comment">Kommentar *</label>
+            <textarea id="comment" name="comment" placeholder="Lämna en kommentar om ditt besök..." required></textarea>
             <!-- Skriver ut error meddelanden om det finns -->
             <div id="error-message"></div>
             <button type="submit" id="reviewBtn">Skicka recension</button>
         </form>
+        <section id="reviews-container"></section>
+        <span class="popup"></span>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer med diverse länkar -->
     <footer>
-        <p>&copy; 2024 Isa Westling</p>
-        <p>DT207G Backend-baserad webbutveckling</p>
-        <p>Webbutvecklingsprogrammet, Mittuniversitetet</p>
+        <div id="footer-content">
+            <div class="footer-col">
+                <h2>Kontakta oss</h2>
+                <a href="tel:010-123456"><i class="fa-solid fa-phone"></i> 010-123 45 67</a>
+                <a href="contact.html"><i class="fa-regular fa-envelope"></i>Skicka meddelande</a>
+                <h2>Hitta hit</h2>
+                <p><i class="fa-solid fa-location-dot"></i> Torggatan 4<br>
+                    123 45 Måberg</p>
+            </div>
+            <div class="footer-col">
+                <h2>Öppettider</h2>
+                <ul>
+                    <li><strong>Söndag:</strong> Stängt</li>
+                    <li><strong>Måndag:</strong> Stängt</li>
+                    <li><strong>Tisdag:</strong> 11-21</li>
+                    <li><strong>Onsdag:</strong> 11-22</li>
+                    <li><strong>Torsdag:</strong> 11-22</li>
+                    <li><strong>Fredag:</strong> 11-01</li>
+                    <li><strong>Lördag:</strong> 12-01</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h2>Snabblänkar</h2>
+                <a href="index.html"><i class="fa-solid fa-house"></i> Hem</a>
+                <a href="menu.html"><i class="fa-solid fa-utensils"></i>Meny</a>
+                <a href="booking.html"><i class="fa-solid fa-calendar"></i> Boka</a>
+                <a href="contact.html"><i class="fa-regular fa-message"></i> Kontakt</a>
+                <a href="review.html"><i class="fa-regular fa-star"></i> Recensioner</a>
+                <a href="about.html"><i class="fa-solid fa-circle-info"></i> Om oss</a>
+            </div>
+        </div>
+        <div id="social-media">
+            <a href="index.html"><i class="fa-brands fa-facebook"></i><i
+                    class="fa-brands fa-instagram"></i>@restaurangMÅ</a>
+        </div>
+        <div id="bottom-foot">
+            <p>&copy; 2024 Isa Westling</p>
+        </div>
     </footer>
 
 </body>
