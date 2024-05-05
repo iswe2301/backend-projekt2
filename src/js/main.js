@@ -6,6 +6,8 @@ import { createUser } from "./create.js";
 import { fetchMenu } from "./menu.js";
 import { makeBooking } from "./booking.js";
 import { sendMessage } from "./contact.js";
+import { createReview } from "./review.js";
+import { fetchReviews } from "./review.js";
 
 // Hämtar element och lagrar i variabler
 const loginBtn = document.getElementById("submit-login");
@@ -18,7 +20,10 @@ const bookingForm = document.getElementById("booking-form");
 const bookingBtn = document.getElementById("bookBtn");
 const contactBtn = document.getElementById("contactBtn");
 const contactForm = document.getElementById("contact-form");
-const menuContainer = document.getElementById("menu-list");
+const reviewBtn = document.getElementById("reviewBtn");
+const reviewForm = document.getElementById("review-form");
+export const menuContainer = document.getElementById("menu-list");
+export const reviewsContainer = document.getElementById("reviews-container");
 const confirmation = document.getElementById("confirmation");
 export let errorMsg = document.getElementById("error-message");
 export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
@@ -27,9 +32,19 @@ export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 window.onload = init;
 function init() {
 
+    // Kontrollerar om container för meny existerar
+    if (menuContainer) {
+        fetchMenu(); // Anropar funktion för att hämta menyn
+    }
+
+    // Kontrollerar om contianer för recensioner existerar
+    if (reviewsContainer) {
+        fetchReviews(); // Anropar funktion för att hämta recensionerna
+    }
+
     // Kontrollerar om bokningsknapp finns på sidan
     if (bookingBtn) {
-        // Läghger till händelselyssnare
+        // Lägger till händelselyssnare
         bookingBtn.addEventListener("click", (event) => {
             event.preventDefault(); // Förhindrar formulärets standardbeteende
             makeBooking(); // Anropar funktion för att genomföra bokning
@@ -48,7 +63,7 @@ function init() {
 
     // Kontrollerar om kontaktknapp finns på sidan
     if (contactBtn) {
-        // Läghger till händelselyssnare
+        // Lägger till händelselyssnare
         contactBtn.addEventListener("click", (event) => {
             event.preventDefault(); // Förhindrar formulärets standardbeteende
             sendMessage(); // Anropar funktion för att skicka meddelande
@@ -65,9 +80,23 @@ function init() {
         });
     }
 
-    // Kontrollerar om container för meny existerar
-    if (menuContainer) {
-        fetchMenu(); // Anropar funktion för att hämta menyn
+    // Kontrollerar om recensionsknapp finns på sidan
+    if (reviewBtn) {
+        // Lägger till händelselyssnare
+        reviewBtn.addEventListener("click", (event) => {
+            event.preventDefault(); // Förhindrar formulärets standardbeteende
+            createReview(); // Anropar funktion för att skicka meddelande
+        });
+
+        // Hämtar alla input-element från formuläret och lagrar i variabel
+        const formInputs = reviewForm.querySelectorAll("input");
+
+        // Lägger till händelselyssnare för varje input i formuläret
+        formInputs.forEach(input => {
+            input.addEventListener("input", () => {
+                errorMsg.style.display = "none"; // Döljer felmeddelandet vid input
+            });
+        });
     }
 
     const username = localStorage.getItem("username"); // Hämtar lösenordet från localStorage
