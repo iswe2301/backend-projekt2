@@ -43,6 +43,7 @@ export async function makeBooking() {
             displayErrors(result.errors);  // Anropar funktion för att visa felen
             return; // Avbryter funktionen
         } else {
+            localStorage.setItem("type", "booking"); // Sparar en nyckel i lS för typ av information för att kunna ge rätt bekräftelse
             localStorage.setItem("bookingDetails", JSON.stringify({ name, phone, email, date, guests, specialRequests })); // Sparar bokning i localStorage
             window.location.href = "/confirm.html"; // Omdirigerar till bekräftelsesidan
         }
@@ -52,8 +53,8 @@ export async function makeBooking() {
     }
 }
 
-// Funktion för att visa ev. fel vid bokning
-function displayErrors(errors) {
+// Funktion för att visa ev. fel vid bokning (exporteras som modul)
+export function displayErrors(errors) {
     errorMsg.innerHTML = "";  // Rensar tidigare felmeddelanden
     errorMsg.style.display = "flex"; // Visar container för felmeddelanden
     // Loopar igenom varje nyckel i objektet med errors
