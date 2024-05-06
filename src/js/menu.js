@@ -215,7 +215,7 @@ function showUpdateForm(dish) {
     dishPrice.value = dish.price;
 
     // Visar formuläret
-    updateForm.style.display = "block";
+    updateForm.style.display = "flex";
 
     // Scrollar till formulärets position med ett mjukt beteende
     updateForm.scrollIntoView({ behavior: "smooth" });
