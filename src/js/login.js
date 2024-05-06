@@ -8,9 +8,6 @@ import { url } from "./main";
 export async function loginUser() {
     const username = document.getElementById("username").value; // Hämtar användarnamnet från formuläret
     const password = document.getElementById("password").value; // Hämtar lösenordet från formuläret
-    const loadingEl = document.querySelector(".loader"); // Hämtar ikon för laddningssymbol
-
-    loadingEl.style.display = "block"; // Visar laddningsikon
 
     try {
 
@@ -30,8 +27,6 @@ export async function loginUser() {
         });
         
         const data = await response.json(); // Inväntar svar och omvandlar till json
-
-        loadingEl.style.display = "none"; // Döljer laddningsikon när svaret kommit
 
         // Kontrollerar om svaret är lyckat eller inte
         if (!response.ok) {
