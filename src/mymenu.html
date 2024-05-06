@@ -65,51 +65,50 @@
             <h1>Meny</h1>
             <!-- Knapp för att lägga till ny rätt i menyn -->
             <button id="add-dish-btn">Lägg till ny rätt <i class="fa-solid fa-plus"></i></button>
-            <div id="menu-list" class="admin-menu">
+            <div id="menu-list" class="admin-menu"></div>
 
-                <!-- Formulär för att uppdatera befintlig rätt i menyn -->
-                <form id="update-form">
-                    <h2>Uppdatera rätt</h2>
-                    <label for="up-name">Namn *</label>
-                    <input type="text" id="up-name" required>
-                    <label for="up-desc">Beskrivning</label>
-                    <input type="text" id="up-desc">
-                    <label for="up-price">Pris *</label>
-                    <input type="number" id="up-price" required>
-                    <!-- Skriver ut error meddelanden om det finns -->
-                    <div class="error-message"></div>
-                    <button type="submit" id="submitUpdate">Spara ändringar</button>
-                </form>
+            <!-- Formulär för att uppdatera befintlig rätt i menyn -->
+            <form id="update-form">
+                <h2>Uppdatera rätt</h2>
+                <label for="up-name">Namn *</label>
+                <input type="text" id="up-name" required>
+                <label for="up-desc">Beskrivning</label>
+                <input type="text" id="up-desc">
+                <label for="up-price">Pris *</label>
+                <input type="number" id="up-price" required>
+                <!-- Skriver ut error meddelanden om det finns -->
+                <div class="error-message"></div>
+                <button type="submit" id="submitUpdate">Spara ändringar</button>
+            </form>
 
-                <!-- Formulär för att lägga till en ny rätt i menyn, post-anrop-->
-                <form id="add-dish-form" method="POST">
-                    <h2>Lägg till ny rätt</h2>
-                    <label for="dish-name">Namn *</label>
-                    <input type="text" id="dish-name" placeholder="Ange rättens namn" required>
-                    <label for="dish-description">Beskrivning</label>
-                    <textarea id="dish-description" placeholder="Ange en beskrivning"></textarea>
-                    <label for="dish-category">Kategori *</label>
-                    <select id="dish-category" required>
-                        <option value="">Välj kategori</option>
-                        <option value="starter">Förrätt</option>
-                        <option value="main">Huvudrätt</option>
-                        <option value="dessert">Efterrätt</option>
-                        <option value="drink">Dryck</option>
-                    </select>
-                    <label for="dish-drink-category">Dryck - underkategori</label>
-                    <select id="dish-drink-category">
-                        <option value="">Välj underkategori</option>
-                        <option value="wine">Vin</option>
-                        <option value="beer">Öl</option>
-                        <option value="non-alcoholic">Alkoholfritt</option>
-                    </select>
-                    <label for="dish-price">Pris</label>
-                    <input type="number" id="dish-price" placeholder="Ange pris" required>
-                    <!-- Skriver ut error meddelanden om det finns -->
-                    <div class="error-message"></div>
-                    <button type="submit" id="submitNewDish">Lägg till rätt</button>
-                </form>
-            </div>
+            <!-- Formulär för att lägga till en ny rätt i menyn, post-anrop-->
+            <form id="add-dish-form" method="POST">
+                <h2>Lägg till ny rätt</h2>
+                <label for="dish-name">Namn *</label>
+                <input type="text" id="dish-name" placeholder="Ange rättens namn" required>
+                <label for="dish-description">Beskrivning</label>
+                <textarea id="dish-description" placeholder="Ange en beskrivning"></textarea>
+                <label for="dish-category">Kategori *</label>
+                <select id="dish-category" required>
+                    <option value="">Välj kategori</option>
+                    <option value="starter">Förrätt</option>
+                    <option value="main">Huvudrätt</option>
+                    <option value="dessert">Efterrätt</option>
+                    <option value="drink">Dryck</option>
+                </select>
+                <label for="dish-drink-category">Dryck - underkategori</label>
+                <select id="dish-drink-category">
+                    <option value="">Välj underkategori</option>
+                    <option value="wine">Vin</option>
+                    <option value="beer">Öl</option>
+                    <option value="non-alcoholic">Alkoholfritt</option>
+                </select>
+                <label for="dish-price">Pris</label>
+                <input type="number" id="dish-price" placeholder="Ange pris" required>
+                <!-- Skriver ut error meddelanden om det finns -->
+                <div class="error-message"></div>
+                <button type="submit" id="submitNewDish">Lägg till rätt</button>
+            </form>
         </div>
         <!-- Visas när användaren inte är behörig / innan content laddats in korrekt -->
         <span id="loading">Laddar innehåll...</span>
