@@ -3,7 +3,7 @@
 // Importerar moduler
 import { loginUser } from "./login.js";
 import { createUser } from "./create.js";
-import { fetchMenu } from "./menu.js";
+import { addNewDish, fetchMenu } from "./menu.js";
 import { makeBooking, fetchBookings, contentEl, loadingEl, loadingIcon } from "./booking.js";
 import { sendMessage, fetchMessages } from "./contact.js";
 import { createReview, fetchReviews } from "./review.js";
@@ -25,6 +25,8 @@ const reviewBtn = document.getElementById("reviewBtn");
 const reviewForm = document.getElementById("review-form");
 const uploadBtn = document.getElementById("uploadBtn");
 const uploadForm = document.getElementById("upload-form");
+const addDishBtn = document.getElementById("add-dish-btn");
+const addDishForm = document.getElementById("add-dish-form");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const menuIcon = document.querySelector(".fa-bars");
@@ -33,12 +35,39 @@ const containerEl = document.getElementById("overlay");
 const confirmation = document.getElementById("confirmation");
 export const menuContainer = document.getElementById("menu-list");
 export const reviewsContainer = document.getElementById("reviews-container");
-export let errorMsg = document.getElementById("error-message");
+export let errorMsg = document.querySelector(".error-message");
 export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 
 // Skapar initieringsfunktion som körs när webbsidan laddats
 window.onload = init;
 function init() {
+
+
+    // Kontrollerar om knapp för att lägga till ny rätt finns på sidan
+    if (addDishBtn) {
+        // Lägger till händelselyssnare
+        addDishBtn.addEventListener("click", function () {
+            addDishForm.style.display = "block"; // Visar formulär för att lägga till ny rätt
+            // Scrollar till formulärets position med ett mjukt beteende
+            addDishForm.scrollIntoView({ behavior: "smooth" });
+            const submitNewDish = document.getElementById("submitNewDish"); // Hämtar knapp för att lägga till ny rätt
+            submitNewDish.addEventListener("click", (event) => { // Lägger till händelselyssnare
+                event.preventDefault(); // Förhindrar formulärets standardbeteende
+                addNewDish(); // Anropar funktion för att lägga till ny rätt
+            })
+        });
+
+        // Hämtar alla input-element från formuläret och lagrar i variabel
+        const formInputs = addDishForm.querySelectorAll("input");
+
+        // Lägger till händelselyssnare för varje input i formuläret
+        formInputs.forEach(input => {
+            input.addEventListener("input", () => {
+                errorMsg.style.display = "none"; // Döljer felmeddelandet vid input
+            });
+        });
+    }
+
 
     // Anropar funktion för att hämta bakgrundsbild
     fetchImage();
