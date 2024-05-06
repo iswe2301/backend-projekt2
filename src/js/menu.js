@@ -29,6 +29,7 @@ export async function fetchMenu() {
 
 // Funktion för att visa menyn med rätter
 function displayMenu(dishes) {
+    menuContainer.style.display = "flex"; // Visar container
     menuContainer.innerHTML = ""; // Tömmer ev. tidigare innehåll i containern
     loadingIcon.style.display = "none"; // Döljer laddningsikon
     loadingEl.style.display = "none"; // Döljer span för "laddning" av sidan
@@ -215,7 +216,7 @@ function showUpdateForm(dish) {
 
     // Visar formuläret
     updateForm.style.display = "block";
-    
+
     // Scrollar till formulärets position med ett mjukt beteende
     updateForm.scrollIntoView({ behavior: "smooth" });
 
