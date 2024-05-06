@@ -11,34 +11,17 @@
         rel="stylesheet">
     <script src="js/main.js" type="module"></script>
     <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
-    <title>MÅ. | Boka bord</title>
+    <title>MÅ. | Om oss</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
     <div id="overlay" class="hidden"></div>
-    <!-- Picturetagg med bakgrundbild i olika filformat / storlekar -->
-    <picture class="body-background">
-        <source srcset="images/background.jpg?as=avif" media="(min-width: 1921px)" type="image/avif">
-        <source srcset="images/background.jpg?as=webp" media="(min-width: 1921px)" type="image/webp">
-        <source srcset="images/background.jpg" media="(min-width: 1921px)" type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/webp">
-        <source srcset="images/background.jpg?width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/webp">
-        <source srcset="images/background.jpg?width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
-        <source srcset="images/background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
+
+    <!-- Bakgrundsbild -->
+    <div class="body-background">
         <img id="background-img" src="images/background.jpg" alt="Restaurang">
-    </picture>
+    </div>
 
 <!-- Header med logotyp -->
 <header>
@@ -109,6 +92,7 @@
                 <a href="contact.html"><i class="fa-regular fa-message"></i> Kontakt</a>
                 <a href="review.html"><i class="fa-regular fa-star"></i> Recensioner</a>
                 <a href="about.html"><i class="fa-solid fa-circle-info"></i> Om oss</a>
+                <a href="login.html"><i class="fa-regular fa-user"></i> MYMÅ</a>
             </div>
         </div>
         <div id="social-media">

@@ -17,35 +17,18 @@
 
 <body>
     <div id="overlay" class="hidden"></div>
-    <!-- Picturetagg med bakgrundbild i olika filformat / storlekar -->
-    <picture class="body-background">
-        <source srcset="images/background.jpg?as=avif" media="(min-width: 1921px)" type="image/avif">
-        <source srcset="images/background.jpg?as=webp" media="(min-width: 1921px)" type="image/webp">
-        <source srcset="images/background.jpg" media="(min-width: 1921px)" type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/webp">
-        <source srcset="images/background.jpg?width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/webp">
-        <source srcset="images/background.jpg?width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
-        <source srcset="images/background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
+    
+    <!-- Bakgrundsbild -->
+    <div class="body-background">
         <img id="background-img" src="images/background.jpg" alt="Restaurang">
-    </picture>
+    </div>
 
     <!-- Header med logotyp -->
     <header>
         <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ."></a>
         <nav id="menu">
             <ul>
-                <li><a class="active" href="index.html">Hem</a></li>
+                <li><a href="index.html">Hem</a></li>
                 <li><a href="menu.html">Meny</a></li>
                 <li><a href="booking.html">Boka bord</a></li>
                 <li><a href="contact.html">Kontakta oss</a></li>
@@ -57,7 +40,7 @@
         <div class="menu-container">
             <nav class="mobile-menu">
                 <ul>
-                    <li><a class="active" href="index.html">Hem</a></li>
+                    <li><a href="index.html">Hem</a></li>
                     <li><a href="menu.html">Meny</a></li>
                     <li><a href="booking.html">Boka bord</a></li>
                     <li><a href="contact.html">Kontakta oss</a></li>
