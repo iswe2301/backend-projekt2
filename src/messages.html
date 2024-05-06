@@ -17,28 +17,11 @@
 
 <body>
     <div id="overlay" class="hidden"></div>
-    <!-- Picturetagg med bakgrundbild i olika filformat / storlekar -->
-    <picture class="body-background">
-        <source srcset="images/background.jpg?as=avif" media="(min-width: 1921px)" type="image/avif">
-        <source srcset="images/background.jpg?as=webp" media="(min-width: 1921px)" type="image/webp">
-        <source srcset="images/background.jpg" media="(min-width: 1921px)" type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/webp">
-        <source srcset="images/background.jpg?width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/webp">
-        <source srcset="images/background.jpg?width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
-        <source srcset="images/background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
+    
+    <!-- Bakgrundsbild -->
+    <div class="body-background">
         <img id="background-img" src="images/background.jpg" alt="Restaurang">
-    </picture>
+    </div>
 
     <!-- Header med logotyp -->
     <header>
@@ -48,7 +31,8 @@
                 <li><a href="mybookings.html">Bokningar</a></li>
                 <li><a href="mymenu.html">Meny</a></li>
                 <li><a class="active" href="messages.html">Meddelanden</a></li>
-                <li><a href="create.html">Ny användare</li>
+                <li><a href="create.html">Ny användare</a></li>
+                <li><a href="background.html">Byt bakgrundsbild</a></li>
             </ul>
         </nav>
         <!-- Mobilmeny -->
@@ -58,7 +42,8 @@
                     <li><a href="mybookings.html">Bokningar</a></li>
                     <li><a href="mymenu.html">Meny</a></li>
                     <li><a class="active" href="messages.html">Meddelanden</a></li>
-                    <li><a href="create.html">Ny användare</li>
+                    <li><a href="create.html">Ny användare</a></li>
+                    <li><a href="background.html">Byt bakgrundsbild</a></li>
                 </ul>
             </nav>
             <!-- Knapp för att växla mobilmenyns synlighet -->
@@ -95,6 +80,7 @@
                 <a href="mymenu.html"><i class="fa-solid fa-utensils"></i>Hantera meny</a>
                 <a href="messages.html"><i class="fa-regular fa-message"></i>Inkomna meddelanden</a>
                 <a href="create.html"><i class="fa-regular fa-user"></i>Registrera ny användare</a>
+                <a href="background.html"><i class="fa-solid fa-upload"></i>Ladda upp ny bakgrund</a>
                 <a href="index.html"><i class="fa-solid fa-circle-arrow-right"></i>Restaurang MÅ - Startsida</a>
             </div>
         </div>

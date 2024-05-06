@@ -11,54 +11,39 @@
         rel="stylesheet">
     <script src="js/main.js" type="module"></script>
     <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
-    <title>MÅ. | Registrera</title>
+    <title>MÅ. | Skapa användarkonto</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
     <div id="overlay" class="hidden"></div>
-    <!-- Picturetagg med bakgrundbild i olika filformat / storlekar -->
-    <picture class="body-background">
-        <source srcset="images/background.jpg?as=avif" media="(min-width: 1921px)" type="image/avif">
-        <source srcset="images/background.jpg?as=webp" media="(min-width: 1921px)" type="image/webp">
-        <source srcset="images/background.jpg" media="(min-width: 1921px)" type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/webp">
-        <source srcset="images/background.jpg?width=1920" media="(min-width: 1201px) and (max-width: 1920px)"
-            type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/webp">
-        <source srcset="images/background.jpg?width=1200" media="(min-width: 801px) and (max-width: 1200px)"
-            type="image/jpeg">
-        <source srcset="images/background.jpg?as=avif&width=800" media="(max-width: 800px)" type="image/avif">
-        <source srcset="images/background.jpg?as=webp&width=800" media="(max-width: 800px)" type="image/webp">
-        <source srcset="images/background.jpg?width=800" media="(max-width: 800px)" type="image/jpeg">
+    
+    <!-- Bakgrundsbild -->
+    <div class="body-background">
         <img id="background-img" src="images/background.jpg" alt="Restaurang">
-    </picture>
+    </div>
 
     <!-- Header med logotyp -->
     <header>
         <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ."></a>
         <nav id="menu">
             <ul>
-                <li><a class="active" href="mybookings.html">Bokningar</a></li>
+                <li><a href="mybookings.html">Bokningar</a></li>
                 <li><a href="mymenu.html">Meny</a></li>
                 <li><a href="messages.html">Meddelanden</a></li>
-                <li><a href="create.html">Ny användare</li>
+                <li><a class="active" href="create.html">Ny användare</a></li>
+                <li><a href="background.html">Byt bakgrundsbild</a></li>
             </ul>
         </nav>
         <!-- Mobilmeny -->
         <div class="menu-container">
             <nav class="mobile-menu">
                 <ul>
-                    <li><a class="active" href="mybookings.html">Bokningar</a></li>
+                    <li><a href="mybookings.html">Bokningar</a></li>
                     <li><a href="mymenu.html">Meny</a></li>
                     <li><a href="messages.html">Meddelanden</a></li>
-                    <li><a href="create.html">Ny användare</li>
+                    <li><a class="active" href="create.html">Ny användare</a></li>
+                    <li><a href="background.html">Byt bakgrundsbild</a></li>
                 </ul>
             </nav>
             <!-- Knapp för att växla mobilmenyns synlighet -->
@@ -69,19 +54,19 @@
         </div>
     </header>
 
-    <div id="content">
-        <div id="user-manager">
-            <!-- Knapp för att logga ut, visar användarnman från JS -->
-            <span id="logged-in"></span>
-            <button id="log-out">Logga ut <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-        </div>
-        <!-- Huvudinnehåll -->
-        <main>
+    <div id="user-manager">
+        <!-- Knapp för att logga ut, visar användarnman från JS -->
+        <span id="logged-in"></span>
+        <button id="log-out">Logga ut <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    </div>
 
+    <!-- Huvudinnehåll -->
+    <main>
+        <div id="content">
             <!-- Formulär för att skapa ny användare -->
             <div class="login-section">
                 <h1>Skapa användarkonto</h1>
-                <form id="userForm" metod="POST">
+                <form id="userForm" method="POST">
                     <div class="form-group">
                         <label for="new-username">Användarnamn *</label>
                         <input type="text" id="new-username" name="username" required
@@ -98,9 +83,13 @@
                     </div>
                 </form>
             </div>
-            <!-- Popup som visas när ny användare lagts till -->
-            <span class="popup"></span>
-        </main>
+        </div>
+        <!-- Popup som visas när ny användare lagts till -->
+        <span class="popup"></span>
+        <!-- Visas när användaren inte är behörig / innan content laddats in korrekt -->
+        <span id="loading">Laddar innehåll...</span>
+        <span class="loader"></span>
+    </main>
 
     <!-- Footer med diverse länkar -->
     <footer>
@@ -111,6 +100,7 @@
                 <a href="mymenu.html"><i class="fa-solid fa-utensils"></i>Hantera meny</a>
                 <a href="messages.html"><i class="fa-regular fa-message"></i>Inkomna meddelanden</a>
                 <a href="create.html"><i class="fa-regular fa-user"></i>Registrera ny användare</a>
+                <a href="background.html"><i class="fa-solid fa-upload"></i>Ladda upp ny bakgrund</a>
                 <a href="index.html"><i class="fa-solid fa-circle-arrow-right"></i>Restaurang MÅ - Startsida</a>
             </div>
         </div>
@@ -122,7 +112,6 @@
             <p>&copy; 2024 Isa Westling</p>
         </div>
     </footer>
-    </div>
 
 </body>
 

@@ -11,12 +11,13 @@
         rel="stylesheet">
     <script src="js/main.js" type="module"></script>
     <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
-    <title>MÅ. | Bokningar</title>
+    <title>MÅ. | Byt bakgrundsbild</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
     <div id="overlay" class="hidden"></div>
+
     <!-- Bakgrundsbild -->
     <div class="body-background">
         <img id="background-img" src="images/background.jpg" alt="Restaurang">
@@ -30,7 +31,7 @@
                 <li><a href="mybookings.html">Bokningar</a></li>
                 <li><a href="mymenu.html">Meny</a></li>
                 <li><a href="messages.html">Meddelanden</a></li>
-                <li><a href="create.html">Ny användare</li>
+                <li><a href="create.html">Ny användare</a></li>
                 <li><a class="active" href="background.html">Byt bakgrundsbild</a></li>
             </ul>
         </nav>
@@ -41,7 +42,7 @@
                     <li><a href="mybookings.html">Bokningar</a></li>
                     <li><a href="mymenu.html">Meny</a></li>
                     <li><a href="messages.html">Meddelanden</a></li>
-                    <li><a href="create.html">Ny användare</li>
+                    <li><a href="create.html">Ny användare</a></li>
                     <li><a class="active" href="background.html">Byt bakgrundsbild</a></li>
                 </ul>
             </nav>
@@ -62,6 +63,7 @@
     <!-- Huvudinnehåll -->
     <main>
         <div id="content">
+            <h1>Byt bakgrundsbild</h1>
             <!-- Formulär för att ladda upp filer/bilder, multipart/formdata för att kunna ladda upp filer -->
             <form id="upload-form" enctype="multipart/form-data" method="POST">
                 <label for="bgImage">Bild *</label>
@@ -71,7 +73,7 @@
                 <input type="text" id="altText" name="altText" placeholder="Ange en alternativ text för bilden...">
                 <!-- Visar ev. felmeddelanden -->
                 <span id="error-message"></span>
-                <button type="submit" id="uploadBtn">Ladda upp bild</button>
+                <button type="submit" id="uploadBtn">Ladda upp bild <i class="fa-solid fa-upload"></i></button>
             </form>
         </div>
         <!-- Visas när användaren inte är behörig / innan content laddats in korrekt -->
@@ -89,6 +91,7 @@
                 <a href="mymenu.html"><i class="fa-solid fa-utensils"></i>Hantera meny</a>
                 <a href="messages.html"><i class="fa-regular fa-message"></i>Inkomna meddelanden</a>
                 <a href="create.html"><i class="fa-regular fa-user"></i>Registrera ny användare</a>
+                <a href="background.html"><i class="fa-solid fa-upload"></i>Ladda upp ny bakgrund</a>
                 <a href="index.html"><i class="fa-solid fa-circle-arrow-right"></i>Restaurang MÅ - Startsida</a>
             </div>
         </div>
