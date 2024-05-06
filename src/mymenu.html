@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="scss/main.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <script src="js/main.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/0517951e44.js" crossorigin="anonymous" defer></script>
+    <title>MÅ. | Bokningar</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <div id="overlay" class="hidden"></div>
+
+    <!-- Bakgrundsbild -->
+    <div class="body-background">
+        <img id="background-img" src="images/background.jpg" alt="Restaurang">
+    </div>
+    <!-- Header med logotyp -->
+    <header>
+        <a href="index.html"><img src="images/logo.svg" alt="Logotyp Restaurang MÅ."></a>
+        <nav id="menu">
+            <ul>
+                <li><a href="mybookings.html">Bokningar</a></li>
+                <li><a class="active" href="mymenu.html">Meny</a></li>
+                <li><a href="messages.html">Meddelanden</a></li>
+                <li><a href="create.html">Ny användare</a></li>
+                <li><a href="background.html">Ladda upp bakgrund</a></li>
+            </ul>
+        </nav>
+        <!-- Mobilmeny -->
+        <div class="menu-container">
+            <nav class="mobile-menu">
+                <ul>
+                    <li><a href="mybookings.html">Bokningar</a></li>
+                    <li><a class="active" href="mymenu.html">Meny</a></li>
+                    <li><a href="messages.html">Meddelanden</a></li>
+                    <li><a href="create.html">Ny användare</a></li>
+                    <li><a href="background.html">Byt bakgrundsbild</a></li>
+                </ul>
+            </nav>
+            <!-- Knapp för att växla mobilmenyns synlighet -->
+            <button class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </header>
+
+    <div id="user-manager">
+        <!-- Knapp för att logga ut, visar användarnman från JS -->
+        <span id="logged-in"></span>
+        <button id="log-out">Logga ut <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    </div>
+
+    <!-- Huvudinnehåll -->
+    <main>
+        <div id="content">
+            <h1>Meny</h1>
+            <!-- Knapp för att lägga till ny rätt i menyn -->
+            <button id="add-dish-btn">Lägg till ny rätt <i class="fa-solid fa-plus"></i></button>
+            <div id="menu-list" class="admin-menu">
+
+                <!-- Formulär för att uppdatera befintlig rätt i menyn -->
+                <form id="update-form">
+                    <h2>Uppdatera rätt</h2>
+                    <label for="up-name">Namn *</label>
+                    <input type="text" id="up-name" required>
+                    <label for="up-desc">Beskrivning</label>
+                    <input type="text" id="up-desc">
+                    <label for="up-price">Pris *</label>
+                    <input type="number" id="up-price" required>
+                    <!-- Skriver ut error meddelanden om det finns -->
+                    <div class="error-message"></div>
+                    <button type="submit" id="submitUpdate">Spara ändringar</button>
+                </form>
+
+                <!-- Formulär för att lägga till en ny rätt i menyn, post-anrop-->
+                <form id="add-dish-form" method="POST">
+                    <h2>Lägg till ny rätt</h2>
+                    <label for="dish-name">Namn *</label>
+                    <input type="text" id="dish-name" placeholder="Ange rättens namn" required>
+                    <label for="dish-description">Beskrivning</label>
+                    <textarea id="dish-description" placeholder="Ange en beskrivning"></textarea>
+                    <label for="dish-category">Kategori *</label>
+                    <select id="dish-category" required>
+                        <option value="">Välj kategori</option>
+                        <option value="starter">Förrätt</option>
+                        <option value="main">Huvudrätt</option>
+                        <option value="dessert">Efterrätt</option>
+                        <option value="drink">Dryck</option>
+                    </select>
+                    <label for="dish-drink-category">Dryck - underkategori</label>
+                    <select id="dish-drink-category">
+                        <option value="">Välj underkategori</option>
+                        <option value="wine">Vin</option>
+                        <option value="beer">Öl</option>
+                        <option value="non-alcoholic">Alkoholfritt</option>
+                    </select>
+                    <label for="dish-price">Pris</label>
+                    <input type="number" id="dish-price" placeholder="Ange pris" required>
+                    <!-- Skriver ut error meddelanden om det finns -->
+                    <div class="error-message"></div>
+                    <button type="submit" id="submitNewDish">Lägg till rätt</button>
+                </form>
+            </div>
+        </div>
+        <!-- Visas när användaren inte är behörig / innan content laddats in korrekt -->
+        <span id="loading">Laddar innehåll...</span>
+        <span class="loader"></span>
+        <!-- Popup som visas när rätt har uppaterats -->
+        <span class="popup"></span>
+    </main>
+
+    <!-- Footer med diverse länkar -->
+    <footer>
+        <div id="footer-content">
+            <div class="footer-col">
+                <h2>Snabblänkar</h2>
+                <a href="mybookings.html"><i class="fa-solid fa-calendar"></i>Se bokningar</a>
+                <a href="mymenu.html"><i class="fa-solid fa-utensils"></i>Hantera meny</a>
+                <a href="messages.html"><i class="fa-regular fa-message"></i>Inkomna meddelanden</a>
+                <a href="create.html"><i class="fa-regular fa-user"></i>Registrera ny användare</a>
+                <a href="background.html"><i class="fa-solid fa-upload"></i>Ladda upp ny bakgrund</a>
+                <a href="index.html"><i class="fa-solid fa-circle-arrow-right"></i>Restaurang MÅ - Startsida</a>
+            </div>
+        </div>
+        <div id="social-media">
+            <a href="index.html"><i class="fa-brands fa-facebook"></i><i
+                    class="fa-brands fa-instagram"></i>@restaurangMÅ</a>
+        </div>
+        <div id="bottom-foot">
+            <p>&copy; 2024 Isa Westling</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
