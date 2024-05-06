@@ -68,7 +68,7 @@
             <div id="menu-list" class="admin-menu"></div>
 
             <!-- Formulär för att uppdatera befintlig rätt i menyn -->
-            <form id="update-form">
+            <form id="update-form" method="POST">
                 <h2>Uppdatera rätt</h2>
                 <label for="up-name">Namn *</label>
                 <input type="text" id="up-name" required>
@@ -78,7 +78,7 @@
                 <input type="number" id="up-price" required>
                 <!-- Skriver ut error meddelanden om det finns -->
                 <div class="error-message"></div>
-                <button type="submit" id="submitUpdate">Spara ändringar</button>
+                <button type="submit" id="submitUpdate">Spara ändringar <i class="fa-solid fa-check"></i></button>
             </form>
 
             <!-- Formulär för att lägga till en ny rätt i menyn, post-anrop-->
@@ -107,7 +107,7 @@
                 <input type="number" id="dish-price" placeholder="Ange pris" required>
                 <!-- Skriver ut error meddelanden om det finns -->
                 <div class="error-message"></div>
-                <button type="submit" id="submitNewDish">Lägg till rätt</button>
+                <button type="submit" id="submitNewDish">Lägg till rätt <i class="fa-solid fa-plus"></i></button>
             </form>
         </div>
         <!-- Visas när användaren inte är behörig / innan content laddats in korrekt -->
