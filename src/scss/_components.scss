@@ -36,7 +36,7 @@ img {
 }
 
 // ID-styling för felmeddelande
-#error-message {
+.error-message {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -75,7 +75,6 @@ img {
 #content {
     display: none;
     width: 100%;
-    max-width: 600px;
 }
 
 // Margin för laddningsmeddelande
@@ -136,7 +135,7 @@ img {
     top: 100px;
     left: 2rem;
     color: white;
-    display: flex;
+    display: none;
     flex-direction: column;
     font-size: 1.4rem;
     font-weight: 600;
@@ -175,7 +174,6 @@ img {
 
 // Animering för laddningsikon
 .loader {
-    display: none; // Döljs initialt
     border: 1rem solid #f3f3f3;
     border-top: 1rem solid rgb(0, 0, 0);
     border-radius: 50%;
@@ -185,11 +183,33 @@ img {
     margin-right: 2rem;
 }
 
+// Styling för container på start/om oss
+#start-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h2,
+    p {
+        color: white;
+    }
+
+    button {
+        background-color: rgb(143, 55, 14);
+
+        &:hover,
+        &:active {
+            background-color: darken(rgb(143, 55, 14), 10%);
+        }
+    }
+}
+
 // Styling för meny
 #menu-list {
     width: 100%;
     max-width: 600px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     background-color: antiquewhite;
@@ -261,6 +281,23 @@ img {
 
     h2 {
         margin: 4rem auto 2rem auto;
+    }
+}
+
+// Döljer formulär för update/lägga till ny rätt
+#update-form,
+#add-dish-form {
+    display: none;
+}
+
+// Styling för lägga till rätt-knapp
+#add-dish-btn {
+    margin: 2rem 0 4rem 0;
+    background-color: rgb(143, 55, 14);
+
+    &:hover,
+    &:active {
+        background-color: darken(rgb(143, 55, 14), 10%);
     }
 }
 
