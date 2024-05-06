@@ -4,13 +4,10 @@
 import { loginUser } from "./login.js";
 import { createUser } from "./create.js";
 import { fetchMenu } from "./menu.js";
-import { makeBooking } from "./booking.js";
-import { sendMessage } from "./contact.js";
-import { createReview } from "./review.js";
-import { fetchReviews } from "./review.js";
-import { fetchBookings } from "./booking.js";
-import { fetchMessages } from "./contact.js";
-import { contentEl } from "./booking.js";
+import { makeBooking, fetchBookings, contentEl, loadingEl, loadingIcon } from "./booking.js";
+import { sendMessage, fetchMessages } from "./contact.js";
+import { createReview, fetchReviews } from "./review.js";
+import { fetchImage, uploadImage } from "./background.js";
 
 // Hämtar element och lagrar i variabler
 const loginBtn = document.getElementById("submit-login");
@@ -18,6 +15,7 @@ const loginForm = document.getElementById("loginForm");
 const userBtn = document.getElementById("submit-user");
 const userForm = document.getElementById("userForm");
 const loggedInUser = document.getElementById("logged-in")
+const userManager = document.getElementById("user-manager");
 const logOutBtn = document.getElementById("log-out");
 const bookingForm = document.getElementById("booking-form");
 const bookingBtn = document.getElementById("bookBtn");
@@ -25,6 +23,8 @@ const contactBtn = document.getElementById("contactBtn");
 const contactForm = document.getElementById("contact-form");
 const reviewBtn = document.getElementById("reviewBtn");
 const reviewForm = document.getElementById("review-form");
+const uploadBtn = document.getElementById("uploadBtn");
+const uploadForm = document.getElementById("upload-form");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const menuIcon = document.querySelector(".fa-bars");
@@ -39,6 +39,9 @@ export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 // Skapar initieringsfunktion som körs när webbsidan laddats
 window.onload = init;
 function init() {
+
+    // Anropar funktion för att hämta bakgrundsbild
+    fetchImage();
 
     // Skapar klickhändelselyssnare för menyknappen, anonym funktion
     menuToggle.addEventListener("click", () => {
@@ -77,6 +80,42 @@ function init() {
     // Kontrollerar om contianer för recensioner existerar
     if (reviewsContainer) {
         fetchReviews(); // Anropar funktion för att hämta recensionerna
+    }
+
+    // Kontrollerar om sökvägen innehåller låsta sidor
+    if (["/mymenu", "/create", "/background"].includes(window.location.pathname)) {
+        const token = localStorage.getItem("JWT"); // Hämtar token från localStorage
+        // Kontrollerar om token saknas
+        if (!token) {
+            alert("Du är inte inloggad eller din session har gått ut. Vänligen logga in igen."); // Skriver ut felmeddelande till klienten
+            contentEl.style.display = "none";
+            loadingEl.style.display = "block";
+            loadingIcon.style.display = "block";
+            window.location.href = "login.html"; // Omdirigerar till inloggningssidan
+        } else {
+            contentEl.style.display = "block"; // Visar innehållet på sidan
+            loadingEl.style.display = "none";
+            loadingIcon.style.display = "none";
+        };
+    }
+
+    // Kontrollerar om uppladdningsknapp finns på sidan
+    if (uploadBtn) {
+        // Lägger till händelselyssnare
+        uploadBtn.addEventListener("click", (event) => {
+            event.preventDefault(); // Förhindrar formulärets standardbeteende
+            uploadImage(); // Anropar funktion för att ladda upp en bild
+        });
+
+        // Hämtar alla input-element från formuläret och lagrar i variabel
+        const formInputs = uploadForm.querySelectorAll("input");
+
+        // Lägger till händelselyssnare för varje input i formuläret
+        formInputs.forEach(input => {
+            input.addEventListener("input", () => {
+                errorMsg.style.display = "none"; // Döljer felmeddelandet vid input
+            });
+        });
     }
 
     // Kontrollerar om bokningsknapp finns på sidan
@@ -139,6 +178,7 @@ function init() {
     const username = localStorage.getItem("username"); // Hämtar lösenordet från localStorage
     // Kontrollerar om användarnamnet finns och om element för att skriva ut info finns på sidan
     if (username && loggedInUser) {
+        userManager.style.display = "flex";
         loggedInUser.innerHTML = `<i class="fa-solid fa-user"></i> Inloggad som: ${username}`; // Sätter innehåll till span
     }
 
@@ -172,19 +212,11 @@ function init() {
 
     // Kontrollerar om formulär för att skapa ny användare finns på sidan
     if (userForm) {
-        const token = localStorage.getItem("JWT"); // Hämtar token från localStorage
-        // Kontrollerar om token saknas
-        if (!token) {
-            alert("Du är inte inloggad eller din session har gått ut. Vänligen logga in igen."); // Skriver ut felmeddelande till klienten
-            window.location.href = "login.html"; // Omdirigerar till inloggningssidan
-        } else {
-            contentEl.style.display = "block"; // Visar innehållet på sidan
-            // Skapar en händelselyssnare vid klick
-            userBtn.addEventListener("click", (event) => {
-                event.preventDefault(); // Förhindrar formulärets standardbeteende (så att sidan inte laddas om)
-                createUser();  // Anropar createUser funktionen
-            });
-        }
+        // Skapar en händelselyssnare vid klick
+        userBtn.addEventListener("click", (event) => {
+            event.preventDefault(); // Förhindrar formulärets standardbeteende (så att sidan inte laddas om)
+            createUser();  // Anropar createUser funktionen
+        });
 
         // Hämtar alla input-element från formuläret och lagrar i variabel
         const formInputs = userForm.querySelectorAll("input");
