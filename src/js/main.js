@@ -59,7 +59,7 @@ function init() {
     if (addDishBtn) {
         // Lägger till händelselyssnare
         addDishBtn.addEventListener("click", function () {
-            addDishForm.style.display = "block"; // Visar formulär för att lägga till ny rätt
+            addDishForm.style.display = "flex"; // Visar formulär för att lägga till ny rätt
             // Scrollar till formulärets position med ett mjukt beteende
             addDishForm.scrollIntoView({ behavior: "smooth" });
             const submitNewDish = document.getElementById("submitNewDish"); // Hämtar knapp för att lägga till ny rätt
