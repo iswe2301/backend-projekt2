@@ -83,19 +83,19 @@ function init() {
     }
 
     // Kontrollerar om sökvägen innehåller låsta sidor
-    if (["/mymenu", "/create", "/background"].includes(window.location.pathname)) {
+    if (["/mymenu", "/mymenu.html", "/create", "/create.html", "/background", "/background.html"].includes(window.location.pathname)) {
         const token = localStorage.getItem("JWT"); // Hämtar token från localStorage
         // Kontrollerar om token saknas
         if (!token) {
             alert("Du är inte inloggad eller din session har gått ut. Vänligen logga in igen."); // Skriver ut felmeddelande till klienten
-            contentEl.style.display = "none";
-            loadingEl.style.display = "block";
+            contentEl.style.display = "none"; // Döljer innehållet
+            loadingEl.style.display = "block"; // Visar laddning
             loadingIcon.style.display = "block";
             window.location.href = "login.html"; // Omdirigerar till inloggningssidan
         } else {
-            contentEl.style.display = "block"; // Visar innehållet på sidan
-            loadingEl.style.display = "none";
+            loadingEl.style.display = "none"; // Döljer laddning
             loadingIcon.style.display = "none";
+            contentEl.style.display = "block"; // Visar innehållet på sidan
         };
     }
 
