@@ -1,6 +1,5 @@
 "use strict";
 
-import { errorMsg } from "./main"; // Importerar container för felmeddelanden
 import { url } from "./main"; // Importerar url
 
 // Hämtar element från DOM, skapar exporterbara moduler
@@ -60,14 +59,20 @@ export async function makeBooking() {
 
 // Funktion för att visa ev. fel vid bokning (exporteras som modul)
 export function displayErrors(errors) {
-    errorMsg.innerHTML = "";  // Rensar tidigare felmeddelanden
-    errorMsg.style.display = "flex"; // Visar container för felmeddelanden
-    // Loopar igenom varje nyckel i objektet med errors
-    Object.keys(errors).forEach(key => {
-        const error = errors[key]; // Hämtar felet för den aktuella nyckeln
-        const errorMessage = document.createElement("p"); // Skapar paragraf
-        errorMessage.textContent = error.message; // Sätter innehållet i paragrafen till error-meddelandet
-        errorMsg.appendChild(errorMessage); // Lägger till paragrafen i containern för felmeddelanden
+    // Hämtar container för felmeddelanden
+    const errorMessages = document.getElementsByClassName("error-message");
+    // Skapar en array för containrarna och loopar igenom varje felmeddelande-container
+    Array.from(errorMessages).forEach(errorMsg => {
+        errorMsg.innerHTML = ""; // Rensar tidigare felmeddelanden
+        errorMsg.style.display = "flex"; // Visar container för felmeddelanden
+
+        // Loopar igenom varje nyckel i objektet med errors
+        Object.keys(errors).forEach(key => {
+            const error = errors[key]; // Hämtar felet för den aktuella nyckeln
+            const errorMessage = document.createElement("p"); // Skapar paragraf
+            errorMessage.textContent = error.message; // Sätter innehållet i paragrafen till error-meddelandet
+            errorMsg.appendChild(errorMessage); // Lägger till paragrafen i containern för felmeddelanden
+        });
     });
 }
 
