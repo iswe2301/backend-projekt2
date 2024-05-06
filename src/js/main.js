@@ -33,6 +33,8 @@ const menuIcon = document.querySelector(".fa-bars");
 const closeIcon = document.querySelector(".fa-xmark");
 const containerEl = document.getElementById("overlay");
 const confirmation = document.getElementById("confirmation");
+const goToMenuBtn = document.getElementById("goToMenu");
+const goToBookBtn = document.getElementById("goToBook");
 export const menuContainer = document.getElementById("menu-list");
 export const reviewsContainer = document.getElementById("reviews-container");
 export let errorMsg = document.querySelector(".error-message");
@@ -42,6 +44,16 @@ export const url = "https://backend-projekt.onrender.com/api/" // Exporterar url
 window.onload = init;
 function init() {
 
+    // Kontrollerar om knapparna finns på sidan
+    if (goToMenuBtn || goToBookBtn) {
+        // Lägger till händelselyssnare vid klick som omdirigerar användaren
+        goToMenuBtn.addEventListener("click", () => {
+            window.location.href = "menu.html"
+        });
+        goToBookBtn.addEventListener("click", () => {
+            window.location.href = "booking.html"
+        });
+    }
 
     // Kontrollerar om knapp för att lägga till ny rätt finns på sidan
     if (addDishBtn) {
@@ -119,11 +131,10 @@ function init() {
             alert("Du är inte inloggad eller din session har gått ut. Vänligen logga in igen."); // Skriver ut felmeddelande till klienten
             contentEl.style.display = "none"; // Döljer innehållet
             loadingEl.style.display = "block"; // Visar laddning
-            loadingIcon.style.display = "block";
             window.location.href = "login.html"; // Omdirigerar till inloggningssidan
         } else {
-            loadingEl.style.display = "none"; // Döljer laddning
             loadingIcon.style.display = "none";
+            loadingEl.style.display = "none"; // Döljer laddning
             contentEl.style.display = "block"; // Visar innehållet på sidan
         };
     }
