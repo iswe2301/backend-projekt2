@@ -116,7 +116,7 @@ function displayBookings(bookings) {
 
     loadingIcon.style.display = "none"; // Döljer laddningsikon
     loadingEl.style.display = "none"; // Döljer span för "laddning" av sidan
-    contentEl.style.display = "block"; // Visar innehållet på sidan
+    contentEl.style.display = "flex"; // Visar innehållet på sidan
 
     // Hämtar container för bokningar och lagrar i variabel
     const bookingContainer = document.getElementById("booking-container");

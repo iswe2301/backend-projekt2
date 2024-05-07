@@ -135,7 +135,7 @@ function init() {
         } else {
             loadingIcon.style.display = "none";
             loadingEl.style.display = "none"; // Döljer laddning
-            contentEl.style.display = "block"; // Visar innehållet på sidan
+            contentEl.style.display = "flex"; // Visar innehållet på sidan
         };
     }
 
