@@ -262,6 +262,20 @@ img {
 
 }
 
+// Speciell margin för h2 + h4 på admin-meny-vyn
+.admin-menu {
+    h2 {
+        margin: 2rem 0 0 0 !important;
+    }
+    h4 {
+        margin: 5rem 0 0 0 !important;
+    }
+
+    button {
+        margin: 0 0 2rem 0;
+    }
+}
+
 // Styling för recensions-container
 #reviews-container {
     width: 100%;
