@@ -39,12 +39,15 @@ function displayMenu(dishes) {
         starter: "Förrätter",
         main: "Huvudrätter",
         dessert: "Efterrätter",
-        drink: "Dryck"
+        sides: "Tillbehör",
+        drink: "Dryck",
+
     };
 
     // Definierar underkategorierna för dryck som ett objekt
     const subCategories = {
         wine: "Vin",
+        bubbles: "Mousserande",
         beer: "Öl",
         "non-alcoholic": "Alkoholfritt"
     };
@@ -275,6 +278,9 @@ async function updateDish(id, dish) {
             setTimeout(function () {
                 popupMsg.classList.remove("show"); // Tar bort show-klassen
                 popupMsg.innerHTML = ""; // Tömmer innehållet
+                setTimeout(function () {
+                    location.reload(); // Laddar om sidan 0.8 sek efter att popup har dolts
+                }, 800);
             }, 3000); // 3 sekunder
         }
         // Fångar upp ev. fel
@@ -290,7 +296,7 @@ export async function addNewDish() {
     const name = document.getElementById('dish-name').value;
     const description = document.getElementById('dish-description').value;
     const category = document.getElementById('dish-category').value;
-    const drinkCategory = document.getElementById('dish-drink-category').value;
+    const drinkcategory = document.getElementById('dish-drink-category').value;
     const price = document.getElementById('dish-price').value;
     const addDishForm = document.getElementById("add-dish-form");
 
@@ -299,7 +305,7 @@ export async function addNewDish() {
         name,
         description,
         category,
-        drinkCategory,
+        drinkcategory,
         price
     };
 
@@ -340,6 +346,9 @@ export async function addNewDish() {
             setTimeout(function () {
                 popupMsg.classList.remove("show"); // Tar bort show-klassen
                 popupMsg.innerHTML = ""; // Tömmer innehållet
+                setTimeout(function () {
+                    location.reload(); // Laddar om sidan 0.8 sek efter att popup har dolts
+                }, 800);
             }, 3000); // 3 sekunder
         }
         // Fångar upp ev. fel
