@@ -11,6 +11,8 @@
 html {
     font-size: 62.5%;
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 // Body
@@ -22,6 +24,8 @@ body {
     background-color: abstracts.$background-color;
     color: abstracts.$text-color;
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* Styling för rubriker, mixin för gemensamma egenskaper */
