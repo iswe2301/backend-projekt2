@@ -300,12 +300,20 @@ export async function addNewDish() {
     const price = document.getElementById('dish-price').value;
     const addDishForm = document.getElementById("add-dish-form");
 
+    // Kontrollerar kategorin är dryck och om ingen underkategori är vald
+    if (category === "drink" && !drinkcategory) {
+        let errorMsg = document.getElementById("err"); // Visar errormeddelande
+        errorMsg.style.display = "block";
+        errorMsg.innerHTML = "Du måste välja en dryckeskategori till drycken";
+        return; // Avbryter funktionen om ingen dryckeskategori är vald
+    }
+
     // Skapar ett objekt med formulärets värden
     const dishData = {
         name,
         description,
         category,
-        drinkcategory,
+        drinkcategory: drinkcategory || null, // Skickar med drinkkategori om det finns, annars null
         price
     };
 
@@ -328,8 +336,8 @@ export async function addNewDish() {
             console.error("Fel vid tilläggning: ", result); // Skriver ut fel till konsollen
             displayErrors(result.errors);  // Anropar funktion för att visa felen
             return; // Avbryter funktionen
+            // Vid lyckat svar
         } else {
-
             addDishForm.reset(); // Återställer formuläret
             addDishForm.style.display = "none"; // Döljer formuläret
 
