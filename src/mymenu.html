@@ -73,7 +73,7 @@
                 <label for="up-name">Namn *</label>
                 <input type="text" id="up-name" required>
                 <label for="up-desc">Beskrivning</label>
-                <input type="text" id="up-desc">
+                <textarea id="up-desc">
                 <label for="up-price">Pris *</label>
                 <input type="number" id="up-price" required>
                 <!-- Skriver ut error meddelanden om det finns -->
@@ -94,12 +94,14 @@
                     <option value="starter">Förrätt</option>
                     <option value="main">Huvudrätt</option>
                     <option value="dessert">Efterrätt</option>
+                    <option value="sides">Tillbehör</option>
                     <option value="drink">Dryck</option>
                 </select>
                 <label for="dish-drink-category">Dryck - underkategori</label>
                 <select id="dish-drink-category">
                     <option value="">Välj underkategori</option>
                     <option value="wine">Vin</option>
+                    <option value="bubbles">Mousserande</option>
                     <option value="beer">Öl</option>
                     <option value="non-alcoholic">Alkoholfritt</option>
                 </select>
