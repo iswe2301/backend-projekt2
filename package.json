@@ -7,8 +7,8 @@
   "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel src/index.html src/create.html src/booking.html src/contact.html src/confirm.html src/login.html src/menu.html src/review.html src/about.html src/mybookings.html",
-    "build": "parcel build src/index.html src/create.html src/booking.html src/contact.html src/confirm.html src/login.html src/menu.html src/review.html src/about.html src/mybookings.html"
+    "start": "parcel *.html",
+    "build": "parcel build *.html"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.11.0",
