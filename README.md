@@ -1,24 +1,34 @@
-# DT207G - Backend-baserad webbutveckling, Moment 4.2 Autentisering och säkerhet
-
-## Moment 4.2 WorkXPerience - projektbeskrivning
-I detta projekt har en webbapplikation skapats som använder den webbtjänst som skapats i Moment 4.1: "https://github.com/iswe2301/backend-moment4.1.git". Webbapplikationen erbjuder användare att skapa användarkonton samt logga in på sitt konto. Väl inloggad på sitt konto kan användaren komma åt data om jobberfarenheter. Applikationen använder JSON Web Tokens (JWT) för att hantera autentisering, vilket säkerställer att endast behöriga användare kan se information om jobberfarenheter.
+# DT207G - Backend-baserad webbutveckling, Moment 5.2 Projekt
+Detta projekt omfattar frontend-delen av en webbapplikation som interagerar med backend-webbtjänsten "https://github.com/iswe2301/backend-projekt.git". Applikationen tillåter användare att se meny, boka bord, skicka meddelanden, lämna och se recensioner. En administrativ del finns också, vilken kräver autentisering och erbjuder funktionaliteter som att hantera meny, bokningar, och recensioner.
 
 ## Funktioner
-De funktioner som skapats är:
-- **Användarregistrering:** Användare kan skapa ett nytt konto genom att ange användarnamn och lösenord. Lösenord måste vara minst 5 tecken långt, annars visas felmeddelande. Användarnamnet måste vara unikt, annars visas felmeddelande. POST-anrop görs till webbtjänsten för att skapa en ny användare och lagra i databasen.
-- **Användarinloggning:** Användare kan logga in med sina inloggningsuppgifter. Vid felaktiga inloggningsuppgifter visas felmeddelande. Vid lyckad inloggning sparas en JWT i localStorage för användaren. Denna används för att säkerställa behörighet för förfrågningar som kräver autentisering. JWT:n är giltig som maximalt 1 timme. POST-anrop görs till webbtjänsten för att logga in en befintlig användare och kontrollera mot sparad data.
-* **Visa jobberfarenheter:** Inloggade användare kan visa en lista över sina jobberfarenheter. Vid inloggning görs automatiskt ett GET-anrop tillsammans med JWT:n för att hämta jobberfarenheter.
-* **Säkerhet:** Autentisering krävs för att se jobberfarenheter. Vid försök att besöka sidan `/get` utan att vara inloggad eller ha en giltig JWT visas ett felmeddelande för klienten, och hen omdirigeras till startsidan för att logga in.
-* **Utloggningsfunktion:** När användaren är inloggad på sin sida kan hen välja att logga ut. Vid utloggning så rensas localStorage och användaren omdirigeras till startsidan för inlogg.
+### Allmänna Funktioner
+- **Se meny:** Användare kan bläddra genom en lista med rätter sorterade efter kategori.
+- **Boka bord:** Användare kan fylla i ett formulär för att göra en bordsbokning. Vid lyckad bokning skickas en e-postbekräftelse till användaren.
+- **Skicka meddelande:** Möjlighet att skicka ett meddelande via ett kontaktformulär. Vid lyckad sändning av meddelandet skickas en e-postbekräftelse.
+- **Lämna recensioner:** Användare kan skriva recensioner om deras upplevelser.
+- **Se recensioner:** Alla besökare kan se recensioner som andra lämnat.
+
+### Administrativa Funktioner (Kräver autentiserad inloggning med JWT)
+- **Hantera bokningar:** Översikt över alla bokningar från aktuellt datum och framåt.
+- **Hantera meny:** Lägg till, uppdatera och ta bort rätter från menyn.
+- **Registrera ny admin:** Admin kan registrera en ny användare som ska bli admin genom att skapa användarnmn och lösenord.
+- **Hantera inkomna meddelanden:** Se inkomna meddelanden och svara på meddelanden.
+- **Byta bakgrundsbild:** Ändra applikationens bakgrundsbild genom att ladda upp en ny bild. Uppdateras automatiskt i både öppna och låsta miljön.
+
+## Säkerhet
+Applikationen använder JSON Web Tokens (JWT) för att hantera autentisering och säkerställa att endast behöriga användare kan åtkomst de administrativa funktionerna. JWT sparas i localStorage 1 timme.
 
 ## Tekniker
-Applikationen är byggd med HTML, CSS (SCSS), och JavaScript. Applikationen använder av Fetch API för att kommunicera med en backend-server där data för användare samt erfarenheter lagras. De ikoner som används är hämtade från FontAwesome.
+Applikationen är byggd med:
+- **HTML/CSS:** För struktur och design.
+- **JavaScript:** För logik och interaktion på klientsidan inklusive Fetch API för kommunikation med backend.
 
 ### Utvecklingsmiljö
-* **Node.js och Express:** för utveckling på serversidan och API-hantering (moment 4.1)
+* **Node.js och Express:** Används på backend för att hantera API-anrop (se backend-projektet moment 5.1).
 * **Parcel:** för att automatisera utvecklingsprocessen och bygga projektet.
 * **MongoDB Atlas:** används som databas för lagring av användare och jobberfarenheter.
-* **Render:** för publicering av webbtjänsten (moment 4.1).
+* **Render:** för publicering av webbtjänsten (moment 5.1).
 * **Netlify:** för publicering av webbapplikationen.
 
 ## Om
